@@ -59,7 +59,7 @@ class _ResumePageState extends State<ResumePage> {
                                 Icons.download,
                                 color: Color(
                                   0xFF4FACFE,
-                                ), // Match your glowing blue theme
+                                ), 
                                 size: 28,
                               ),
                             ),

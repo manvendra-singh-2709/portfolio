@@ -38,9 +38,12 @@ class IconFromImage {
 class PDFs {
   PDFs._();
 
-  static const String _basePath = "assets/pdfs/";
+  static const String _basePath = "assets/assets/pdfs/";
 
   static const String cv = "${_basePath}cv.pdf";
+
+  static const String cvUrl =
+      "https://drive.google.com/file/d/1vB-UxXNLu3KyC117Ay8cxiI_3ccNlLro/view?usp=sharing";
 }
 
 class Texts {
