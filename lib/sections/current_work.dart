@@ -103,7 +103,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
               width: double.infinity,
               height: 400,
               color: Colors.transparent,
-              margin: const EdgeInsets.symmetric(horizontal: 40),
+              margin: EdgeInsets.symmetric(horizontal: context.isMobile? 20 : 40),
               child: CustomPaint(
                 painter: AtomFramePainter(atoms: atoms, rotation: _rotation),
                 child: Stack(
@@ -128,7 +128,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(
                           "Pt Relaxation on amorphous Silica",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: context.isMobile? 16 : 20),
                         ),
                       ),
                     ),
