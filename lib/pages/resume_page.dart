@@ -52,7 +52,7 @@ class _ResumePageState extends State<ResumePage> {
                             ),
                             IconButton(
                               onPressed: () => openUrl(
-                                PDFs.cv,
+                                "cv.pdf",
                               ), 
                               tooltip: "View Full CV",
                               icon: const Icon(
