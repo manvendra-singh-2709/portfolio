@@ -1,10 +1,10 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:port/utils/extensions.dart';
 import 'package:vector_math/vector_math_64.dart' as vmath;
 import 'package:port/globals/globals.dart';
 import '../models/atoms.dart';
+import '../widgets/glass_container.dart';
 
 class CurrentWorkSimulation extends StatefulWidget {
   const CurrentWorkSimulation({super.key});
@@ -85,14 +85,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
     return Center(
       child: SizedBox(
         width: context.width * 0.95,
-        child: LiquidGlass.withOwnLayer(
-          fake: true,
-          settings: const LiquidGlassSettings(
-            thickness: 5,
-            blur: 25,
-            glassColor: Color(0x0DFFFFFF),
-          ),
-          shape: LiquidRoundedSuperellipse(borderRadius: 25),
+        child: GlassContainer(
           child: GestureDetector(
             onPanUpdate: (details) {
               setState(() {

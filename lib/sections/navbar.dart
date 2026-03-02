@@ -1,7 +1,6 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:port/utils/extensions.dart';
+import 'package:port/widgets/glass_container.dart';
 import '../utils/nav_bar_item.dart';
 
 class Navbar extends StatefulWidget {
@@ -86,20 +85,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: LiquidGlass.withOwnLayer(
-        fake: true,
-        settings: const LiquidGlassSettings(
-          glassColor: Color(0x1AFFFFFF),
-          thickness: 15.0,
-          blur: 12.0,
-          chromaticAberration: 0.03,
-          lightAngle: 0.25 * math.pi,
-          lightIntensity: 0.7,
-          ambientStrength: 0.2,
-          refractiveIndex: 1.4,
-          saturation: 1.2,
-        ),
-        shape: LiquidRoundedSuperellipse(borderRadius: 50),
+      child: GlassContainer(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Row(
@@ -154,15 +140,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildMobileOverlay() {
-    return LiquidGlass.withOwnLayer(
-      fake: true,
-      settings: const LiquidGlassSettings(
-        blur: 25,
-        glassColor: Color(0x33FFFFFF),
-        thickness: 5,
-      ),
-      shape: LiquidRoundedSuperellipse(borderRadius: 25),
-      child: Padding(
+    return GlassContainer(child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           mainAxisSize: MainAxisSize.min,

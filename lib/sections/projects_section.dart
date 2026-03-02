@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart'; //
 import 'package:port/data/api_caller.dart';
 import 'package:port/globals/globals.dart';
 import 'package:port/sections/current_work.dart';
 import 'package:port/utils/extensions.dart';
+import 'package:port/widgets/glass_container.dart';
 import '../models/project.dart';
 
 class ProjectsSection extends StatefulWidget {
@@ -88,15 +88,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
         height: 45,
         alignment: Alignment.center,
         child: isSelected
-            ? LiquidGlass.withOwnLayer(
-                fake: true,
-                settings: const LiquidGlassSettings(
-                  thickness: 5,
-                  blur: 10,
-                  glassColor: Color(0x4DFFFFFF),
-                  lightIntensity: 0.5,
-                ),
-                shape: LiquidRoundedSuperellipse(borderRadius: 25),
+            ? GlassContainer(
                 child: Center(
                   child: Text(
                     label,
@@ -159,14 +151,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
     return Container(
       width: !context.isMobile ? 400 : 200,
       margin: const EdgeInsets.only(right: 20),
-      child: LiquidGlass.withOwnLayer(
-        fake: true,
-        settings: const LiquidGlassSettings(
-          thickness: 10,
-          blur: 15,
-          glassColor: Color(0x1AFFFFFF),
-        ),
-        shape: LiquidRoundedSuperellipse(borderRadius: 25),
+      child: GlassContainer(
         child: Padding(
           padding: const EdgeInsets.all(25),
           child: Column(
@@ -219,14 +204,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
         child: SizedBox(
           width: context.width * 0.8,
           height: context.height * 0.8,
-          child: LiquidGlass.withOwnLayer(
-            settings: const LiquidGlassSettings(
-              thickness: 20,
-              blur: 20,
-              glassColor: Color(0x1AFFFFFF),
-              lightIntensity: 0.8,
-            ),
-            shape: LiquidRoundedSuperellipse(borderRadius: 30),
+          child: GlassContainer(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: Column(

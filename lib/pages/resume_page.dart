@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:port/utils/constants.dart';
 
 import '../utils/helpers.dart';
+import '../widgets/glass_container.dart';
 
 class ResumePage extends StatefulWidget {
   const ResumePage({super.key});
@@ -324,14 +324,7 @@ class _ResumePageState extends State<ResumePage> {
   Widget _buildGlassCard({required Widget child}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
-      child: LiquidGlass.withOwnLayer(
-        fake: true,
-        settings: const LiquidGlassSettings(
-          thickness: 5,
-          blur: 15,
-          glassColor: Color(0x0DFFFFFF),
-        ),
-        shape: LiquidRoundedSuperellipse(borderRadius: 20),
+      child: GlassContainer(
         child: Padding(padding: const EdgeInsets.all(20), child: child),
       ),
     );

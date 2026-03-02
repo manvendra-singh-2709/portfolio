@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
-
 import '../sections/about_section.dart';
 import '../sections/contact_section.dart';
 import '../sections/footer.dart';
@@ -8,6 +6,7 @@ import '../sections/hero_section.dart';
 import '../sections/navbar.dart';
 import '../sections/projects_section.dart';
 import '../sections/skills_section.dart';
+import '../widgets/glass_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -41,7 +40,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background decoration
           Positioned(
             top: -100,
             right: -100,
@@ -97,14 +95,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMobileMenuOverlay() {
-    return LiquidGlass.withOwnLayer(
-      fake: true,
-      settings: const LiquidGlassSettings(
-        blur: 25, 
-        glassColor: Color(0x33FFFFFF),
-        thickness: 5,
-      ),
-      shape: LiquidRoundedSuperellipse(borderRadius: 25),
+    return GlassContainer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: ['Home', 'Projects', 'Resume', 'Blogs', 'Contact'].map((item) => ListTile(

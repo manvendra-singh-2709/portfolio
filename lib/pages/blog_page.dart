@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 import 'package:port/globals/globals.dart';
 import '../models/blog.dart';
+import '../widgets/glass_container.dart';
 
 class BlogPage extends StatefulWidget {
   const BlogPage({super.key});
@@ -101,14 +101,7 @@ class _BlogPageState extends State<BlogPage> {
   Widget _buildBlogCard(Blog blog) {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
-      child: LiquidGlass.withOwnLayer(
-        fake: true,
-        settings: const LiquidGlassSettings(
-          thickness: 5,
-          blur: 15,
-          glassColor: Color(0x0DFFFFFF),
-        ),
-        shape: LiquidRoundedSuperellipse(borderRadius: 25),
+      child: GlassContainer(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Column(

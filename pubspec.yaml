@@ -48,7 +48,6 @@ dependencies:
   webview_flutter: ^4.13.1
   webview_flutter_web: ^0.2.3+4
   model_viewer_plus: ^1.10.0
-  liquid_glass_renderer: ^0.2.0-dev.4
   dev_icons: ^1.0.0
   simple_icons: ^14.6.1
   flutter_any_logo: ^1.1.2
