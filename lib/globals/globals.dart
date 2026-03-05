@@ -8,7 +8,7 @@ import '../models/atoms.dart';
 
 class Global {
   static late Stream<List<Project>> projectsStream;
-  static List<List<Atom>> movieData = [];
+  static Map<String, List<List<Atom>>> movieData = {};
   static List<Project> projectsList = [];
   static List<Blog> blogs = [];
 

@@ -36,7 +36,7 @@ class _HeroSectionState extends State<HeroSection> {
               ),
               child: const CircleAvatar(
                 radius: 100,
-                backgroundImage: AssetImage(Images.profilePhoto),
+                backgroundImage: AssetImage(Images.pf2),
               ),
             ),
           ),

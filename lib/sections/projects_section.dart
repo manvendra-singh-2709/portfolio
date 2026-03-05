@@ -203,7 +203,6 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
       builder: (context) => Center(
         child: SizedBox(
           width: context.width * 0.8,
-          height: context.height * 0.8,
           child: GlassContainer(
             child: Padding(
               padding: const EdgeInsets.all(30.0),

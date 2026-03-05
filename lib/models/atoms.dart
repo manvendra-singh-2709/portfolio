@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:port/utils/constants.dart';
+import 'dart:developer';
+import 'package:flutter/services.dart';
 
 class Atom {
   final String species;
@@ -13,51 +13,74 @@ class Atom {
 }
 
 class ProjectData {
-  static List<List<Atom>> movieData = [];
+  static Map<String, List<List<Atom>>> movieData = {};
 
-  static Future<List<List<Atom>>> loadAllFrames() async {
+  static Future<List<String>> loadAnimationAssets() async {
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+
+    return manifest
+        .listAssets()
+        .where(
+          (String asset) =>
+              asset.startsWith('assets/animations/') && asset.endsWith('.csv'),
+        )
+        .toList();
+  }
+
+  static Future<Map<String, List<List<Atom>>>> loadAllFrames() async {
+    final List<String> paths = await ProjectData.loadAnimationAssets();
     try {
-      final String content = await rootBundle.loadString(Animations.xyzMovie);
-      final List<String> lines = content.split('\n');
+      Map<String, List<List<Atom>>> allMovies = {};
 
-      List<List<Atom>> tempFrames = [];
-      List<Atom> currentFrameAtoms = [];
-      int? lastFrameIdx;
+      for (String path in paths) {
+        final String content = await rootBundle.loadString(path);
+        final List<String> lines = content.split('\n');
 
-      for (int i = 1; i < lines.length; i++) {
-        String line = lines[i].trim();
-        if (line.isEmpty) continue;
+        if (lines.length < 3) continue;
 
-        final List<String> parts = line.split(',');
-        if (parts.length < 5) continue;
+        String projectTitle = lines[0].trim();
+        List<List<Atom>> tempFrames = [];
+        List<Atom> currentFrameAtoms = [];
+        int? lastFrameIdx;
 
-        final int frameIdx = int.parse(parts[0]);
+        for (int i = 2; i < lines.length; i++) {
+          String line = lines[i].trim();
+          if (line.isEmpty) continue;
 
-        if (lastFrameIdx != null && frameIdx != lastFrameIdx) {
-          tempFrames.add(List<Atom>.from(currentFrameAtoms));
-          currentFrameAtoms.clear();
+          final List<String> parts = line.split(',');
+          if (parts.length < 5) continue;
+
+          int? frameIdx = int.tryParse(parts[0]);
+          if (frameIdx == null) continue;
+
+          if (lastFrameIdx != null && frameIdx != lastFrameIdx) {
+            tempFrames.add(List<Atom>.from(currentFrameAtoms));
+            currentFrameAtoms.clear();
+          }
+
+          currentFrameAtoms.add(
+            Atom(
+              species: parts[1],
+              x: double.parse(parts[2]),
+              y: double.parse(parts[3]),
+              z: double.parse(parts[4]),
+            ),
+          );
+          lastFrameIdx = frameIdx;
         }
 
-        currentFrameAtoms.add(
-          Atom(
-            species: parts[1],
-            x: double.parse(parts[2]),
-            y: double.parse(parts[3]),
-            z: double.parse(parts[4]),
-          ),
-        );
+        if (currentFrameAtoms.isNotEmpty) {
+          tempFrames.add(List<Atom>.from(currentFrameAtoms));
+        }
 
-        lastFrameIdx = frameIdx;
+        allMovies[projectTitle] = tempFrames;
       }
 
-      if (currentFrameAtoms.isNotEmpty) {
-        tempFrames.add(List<Atom>.from(currentFrameAtoms));
-      }
-
-      movieData = tempFrames;
-      return tempFrames;
+      movieData = allMovies;
+      return allMovies;
     } catch (e) {
-      throw Exception("Error loading simulation frames: $e");
+      log("Critical Error in loadAllFrames: $e");
+      return {};
     }
   }
 }

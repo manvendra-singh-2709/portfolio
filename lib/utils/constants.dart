@@ -3,7 +3,9 @@ class Images {
 
   static const String _basePath = "assets/images/";
 
-  static const String profilePhoto = "${_basePath}profile_photo.jpeg";
+  static const String pf1 = "${_basePath}pf1.jpeg";
+  static const String pf2 = "${_basePath}pf2.jpeg";
+  static const String pf3 = "${_basePath}pf3.jpeg";
 
   static const String logo = "${_basePath}logo.png";
 }
