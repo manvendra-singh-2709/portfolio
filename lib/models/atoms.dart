@@ -22,7 +22,7 @@ class ProjectData {
         .listAssets()
         .where(
           (String asset) =>
-              asset.startsWith('assets/animations/') && asset.endsWith('.csv'),
+              asset.startsWith('assets/assets/animations/') && asset.endsWith('.csv'),
         )
         .toList();
   }
