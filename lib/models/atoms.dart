@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class Atom {
@@ -16,14 +17,22 @@ class ProjectData {
   static Map<String, List<List<Atom>>> movieData = {};
 
   static Future<List<String>> loadAnimationAssets() async {
-    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    final AssetManifest manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+
+    String animationPath = '';
+
+    if (kDebugMode) {
+      animationPath = 'assets/animations/';
+      log("Running in DEBUG mode");
+    }
+    if (kReleaseMode) {
+      animationPath = 'assets/assets/animations/';
+      log("Running in PRODUCTION mode");
+    }
 
     return manifest
         .listAssets()
-        .where(
-          (String asset) =>
-              asset.startsWith('assets/assets/animations/') && asset.endsWith('.csv'),
-        )
+        .where((String asset) => asset.startsWith(animationPath) && asset.endsWith('.csv'))
         .toList();
   }
 

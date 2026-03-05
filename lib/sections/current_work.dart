@@ -137,6 +137,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildProgressBar(maxFrame),
+                        // This is now a standard Widget (Row), not a Positioned
                         _buildProjectNavigation(),
                       ],
                     ),
@@ -168,54 +169,53 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
   }
 
   Widget _buildProjectNavigation() {
-    return Positioned(
-      top: 15,
-      right: 15,
-      child: Row(
-        children: [
-          _navButton(
-            Icons.skip_previous,
-            () => _navigateMovie(false),
-            forward: false,
-          ),
-          const SizedBox(width: 8),
-          _navButton(
-            Icons.skip_next,
-            () => _navigateMovie(true),
-            forward: true,
-          ),
-        ],
-      ),
+    // Removed Positioned and Stack
+    return Row(
+      mainAxisSize: MainAxisSize.min, // Keep it compact for the parent Row
+      children: [
+        _navButton(
+          Icons.skip_previous,
+          () => _navigateMovie(false),
+          forward: false,
+        ),
+        const SizedBox(width: 8),
+        _navButton(Icons.skip_next, () => _navigateMovie(true), forward: true),
+      ],
     );
   }
 
   Widget _buildProgressBar(int maxFrame) {
     return Row(
+      mainAxisSize: MainAxisSize.min, // Constrains the row to its content
       children: [
         Text(
           "$_currentFrameIndex",
           style: const TextStyle(color: Colors.white70, fontSize: 12),
         ),
+        const SizedBox(width: 8),
+        // This SizedBox ensures the bar occupies exactly 30% of the screen width
         SizedBox(
           width: context.width * 0.3,
-          child: Expanded(
-            child: SliderTheme(
-              data: SliderTheme.of(context).copyWith(
-                trackHeight: 2,
-                thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-              ),
-              child: Slider(
-                value: _currentFrameIndex.toDouble(),
-                min: 0,
-                max: maxFrame.toDouble(),
-                onChanged: (v) => setState(() {
-                  _currentFrameIndex = v.toInt();
-                  if (_isPlaying) _togglePlay(); // Pause while scrubbing
-                }),
-              ),
+          child: SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              trackHeight: 2,
+              thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
+              activeTrackColor: Colors.blueAccent,
+              inactiveTrackColor: Colors.white10,
+              thumbColor: Colors.white,
+            ),
+            child: Slider(
+              value: _currentFrameIndex.toDouble(),
+              min: 0,
+              max: maxFrame.toDouble(),
+              onChanged: (v) => setState(() {
+                _currentFrameIndex = v.toInt();
+                if (_isPlaying) _togglePlay(); // Pause while scrubbing
+              }),
             ),
           ),
         ),
+        const SizedBox(width: 8),
         Text(
           "$maxFrame",
           style: const TextStyle(color: Colors.white24, fontSize: 12),
@@ -238,6 +238,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
             ),
             const SizedBox(width: 10),
             IconButton(
+              tooltip: _isPlaying ? "Pause" : "Play",
               onPressed: _togglePlay,
               icon: Icon(
                 _isPlaying ? Icons.pause : Icons.play_arrow,
