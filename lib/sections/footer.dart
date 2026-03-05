@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:port/globals/globals.dart';
 import 'package:port/utils/constants.dart';
 import 'package:port/utils/sizes.dart';
 import '../utils/helpers.dart';
@@ -50,20 +49,6 @@ class _FooterState extends State<Footer> {
               ),
               Gap(Insets.lg),
               Text('Built with Flutter.', style: TextStyle(fontSize: 20)),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true, // Crucial: tells ListView to take minimum height
-  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: Global.data.length,
-                  itemBuilder: (context, id) {
-                    return Text(Global.data[id]);
-                  },
-                ),
-              ),
             ],
           ),
         ],

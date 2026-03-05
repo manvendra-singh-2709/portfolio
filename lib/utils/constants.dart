@@ -15,7 +15,12 @@ class Animations {
 
   static const String _basePath = "assets/animations/";
 
-  static const String xyzMovie = "${_basePath}Si_Pt.csv";
+  static const String relaxation1 = "${_basePath}relaxation1.csv";
+  static const String restart1 = "${_basePath}restart1.csv";
+  static const String restart2 = "${_basePath}restart2.csv";
+  static const String md1 = "${_basePath}md1.csv";
+
+  static List<String> movies = [relaxation1, restart1, restart2, md1];
 }
 
 class IconFromImage {

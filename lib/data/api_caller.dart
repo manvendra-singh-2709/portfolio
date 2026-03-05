@@ -69,4 +69,20 @@ class ApiCaller {
       return [];
     }
   }
+
+  static Future<bool> addBlog(String title, String content) async {
+    try {
+      await supabase.from('Blogs').insert({
+        'title': title,
+        'content': content,
+        'time': DateTime.now().toIso8601String(),
+      });
+
+      log('Blog added successfully!');
+      return true;
+    } catch (e) {
+      log('Error adding blog: $e');
+      return false;
+    }
+  }
 }
