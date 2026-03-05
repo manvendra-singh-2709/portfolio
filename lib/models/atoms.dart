@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:port/utils/constants.dart';
 
 class Atom {
   final String species;
@@ -17,7 +18,9 @@ class ProjectData {
   static Map<String, List<List<Atom>>> movieData = {};
 
   static Future<List<String>> loadAnimationAssets() async {
-    final AssetManifest manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    final AssetManifest manifest = await AssetManifest.loadFromAssetBundle(
+      rootBundle,
+    );
 
     String animationPath = '';
 
@@ -25,19 +28,23 @@ class ProjectData {
       animationPath = 'assets/animations/';
       log("Running in DEBUG mode");
     }
-    if (kReleaseMode) {
+    else {
       animationPath = 'assets/assets/animations/';
       log("Running in PRODUCTION mode");
     }
 
     return manifest
         .listAssets()
-        .where((String asset) => asset.startsWith(animationPath) && asset.endsWith('.csv'))
+        .where(
+          (String asset) =>
+              asset.startsWith(animationPath) && asset.endsWith('.csv'),
+        )
         .toList();
   }
 
   static Future<Map<String, List<List<Atom>>>> loadAllFrames() async {
-    final List<String> paths = await ProjectData.loadAnimationAssets();
+    List<String> paths = await ProjectData.loadAnimationAssets();
+    // paths = Animations.loadPaths();
     try {
       Map<String, List<List<Atom>>> allMovies = {};
 

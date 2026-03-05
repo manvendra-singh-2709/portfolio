@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
           ),
           if (_isMenuOpen)
             Positioned(
-              top: 100, // Position it right below your glass Navbar
+              top: 100, 
               left: 20,
               right: 20,
               child: _buildMobileMenuOverlay(),
