@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:port/utils/constants.dart';
+import 'package:port/globals/globals.dart';
 
 class Atom {
   final String species;
@@ -27,8 +27,7 @@ class ProjectData {
     if (kDebugMode) {
       animationPath = 'assets/animations/';
       log("Running in DEBUG mode");
-    }
-    else {
+    } else {
       animationPath = 'assets/assets/animations/';
       log("Running in PRODUCTION mode");
     }
@@ -42,8 +41,15 @@ class ProjectData {
         .toList();
   }
 
+  static void readAssetList() async {
+    final assetManifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    log("jhhhhh");
+    Global.data = assetManifest.listAssets();
+  }
+
   static Future<Map<String, List<List<Atom>>>> loadAllFrames() async {
     List<String> paths = await ProjectData.loadAnimationAssets();
+    readAssetList();
     // paths = Animations.loadPaths();
     try {
       Map<String, List<List<Atom>>> allMovies = {};

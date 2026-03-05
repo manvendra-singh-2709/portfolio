@@ -11,6 +11,7 @@ class Global {
   static Map<String, List<List<Atom>>> movieData = {};
   static List<Project> projectsList = [];
   static List<Blog> blogs = [];
+  static List<String> data = [];
 
   Global() {
     log("Global Invoked");

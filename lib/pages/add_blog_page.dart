@@ -37,9 +37,9 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
               ),
             ),
           ),
-          SingleChildScrollView(child: Column(children: [
-              ],
-            )),
+          // SingleChildScrollView(child: Column(children: [
+          //     ],
+          //   )),
         ],
       ),
     );
