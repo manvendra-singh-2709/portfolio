@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:port/data/api_caller.dart';
 import 'package:port/globals/globals.dart';
 import '../models/blog.dart';
 import '../widgets/glass_container.dart';
@@ -12,6 +13,19 @@ class BlogPage extends StatefulWidget {
 }
 
 class _BlogPageState extends State<BlogPage> {
+  @override
+  void initState() {
+    super.initState();
+    if (Global.blogs.isEmpty) {
+      fetchBlogs();
+    }
+  }
+
+  Future<void> fetchBlogs() async {
+    Global.blogs = await ApiCaller.getBlogs();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
