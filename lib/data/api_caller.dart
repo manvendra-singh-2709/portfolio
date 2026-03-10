@@ -13,7 +13,7 @@ class ApiCaller {
     try {
       return supabase
           .from('Projects')
-          .stream(primaryKey: ['id']) // Required for Realtime
+          .stream(primaryKey: ['id']) 
           .map((data) {
             final List<Project> projects = data.map((json) {
               return Project(
@@ -24,7 +24,6 @@ class ApiCaller {
               );
             }).toList();
 
-            // Sort locally so UI stays consistent
             projects.sort((a, b) => a.id.compareTo(b.id));
             return projects;
           });

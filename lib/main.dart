@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -35,27 +37,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
+  @override
+  void initState() {
+    super.initState();
+    ProjectData.loadAllFrames();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ProjectData.loadAllFrames();
     return MaterialApp(
       title: 'Portfolio',
       debugShowCheckedModeBanner: false,
+      scrollBehavior: MyCustomScrollBehavior(), 
       theme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF0F172A),
+        useMaterial3: true,
       ),
-      onGenerateRoute: (settings) {
+      initialRoute: AppRoutes.home,
+      routes: AppRoutes.routes,
+      onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(
           settings: settings,
           builder: (context) => const NotFoundPage(),
         );
       },
-      initialRoute: AppRoutes.home,
-      routes: AppRoutes.routes,
-      onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => const NotFoundPage()),
+      onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(
+        builder: (BuildContext context) => const NotFoundPage(),
+      ),
     );
   }
+}
+
+// Ensure your ScrollBehavior is defined outside the class
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
