@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:port/utils/constants.dart';
-import 'package:port/utils/sizes.dart';
-import 'package:port/utils/text_style.dart';
+
+import 'constants.dart';
+import 'sizes.dart';
+import 'text_style.dart';
 
 enum FormFactorType { mobile, desktop, tablet }
 

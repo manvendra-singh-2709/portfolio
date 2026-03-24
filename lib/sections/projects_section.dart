@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:port/data/api_caller.dart';
-import 'package:port/globals/globals.dart';
-import 'package:port/sections/current_work.dart';
-import 'package:port/utils/extensions.dart';
-import 'package:port/widgets/glass_container.dart';
+import '../data/api_caller.dart';
+import '../globals/globals.dart';
+import '../sections/current_work.dart';
+import '../utils/extensions.dart';
+import '../widgets/glass_container.dart';
 import '../models/project.dart';
 
 class ProjectsSection extends StatefulWidget {

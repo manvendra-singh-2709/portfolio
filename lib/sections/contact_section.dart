@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:port/data/api_caller.dart';
-import 'package:port/models/message.dart';
+import '../data/api_caller.dart';
+import '../models/message.dart';
 import '../widgets/glass_container.dart';
 
 class ContactSection extends StatefulWidget {

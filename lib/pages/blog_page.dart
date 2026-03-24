@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:port/data/api_caller.dart';
-import 'package:port/globals/globals.dart';
+import '../data/api_caller.dart';
+import '../globals/globals.dart';
 import '../models/blog.dart';
 import '../widgets/glass_container.dart';
 

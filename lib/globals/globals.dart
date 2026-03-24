@@ -1,9 +1,8 @@
 import 'dart:developer';
 
-import 'package:port/data/api_caller.dart';
-import 'package:port/models/blog.dart';
-import 'package:port/models/project.dart';
-
+import '../data/api_caller.dart';
+import '../models/blog.dart';
+import '../models/project.dart';
 import '../models/atoms.dart';
 
 class Global {

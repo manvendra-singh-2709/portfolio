@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:port/pages/add_blog_page.dart';
-import 'package:port/pages/blog_page.dart';
-import 'package:port/pages/home_page.dart';
-import 'package:port/pages/resume_page.dart';
+import '../pages/add_blog_page.dart';
+import '../pages/blog_page.dart';
+import '../pages/home_page.dart';
+import '../pages/resume_page.dart';
 
 class AppRoutes {
   static const String home = '/';

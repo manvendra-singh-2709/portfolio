@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:port/models/project.dart';
+import '../models/project.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/blog.dart';

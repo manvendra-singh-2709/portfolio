@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:port/utils/extensions.dart';
 import 'package:vector_math/vector_math_64.dart' as vmath;
-import 'package:port/globals/globals.dart';
+import '../utils/extensions.dart';
+import '../globals/globals.dart';
 import '../models/atoms.dart';
 import '../widgets/glass_container.dart';
 

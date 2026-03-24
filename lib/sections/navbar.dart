@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:port/utils/extensions.dart';
-import 'package:port/widgets/glass_container.dart';
+import '../utils/extensions.dart';
+import '../widgets/glass_container.dart';
 import '../utils/nav_bar_item.dart';
 
 class Navbar extends StatefulWidget {

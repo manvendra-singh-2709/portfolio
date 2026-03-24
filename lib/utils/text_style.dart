@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:port/utils/constants.dart';
-import 'package:port/utils/sizes.dart';
+import 'constants.dart';
+import 'sizes.dart';
 
 abstract class AppTextStyles {
   TextStyle textStyleHeadingBig(AppInsets insets);

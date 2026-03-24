@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:port/models/skill.dart';
+import '../models/skill.dart';
 import '../widgets/glass_container.dart';
 
 class SkillsSection extends StatelessWidget {
