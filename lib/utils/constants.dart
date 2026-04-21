@@ -7,6 +7,9 @@ class Images {
   static const String pf2 = "${_basePath}pf2.jpeg";
   static const String pf3 = "${_basePath}pf3.jpeg";
 
+  static const String atoms1 = "${_basePath}Atoms1.png";
+  static const String atoms2 = "${_basePath}Atoms1.png";
+
   static const String logo = "${_basePath}logo.png";
 }
 
