@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/helpers.dart';
 import '../widgets/glass_container.dart';
 
@@ -209,7 +208,7 @@ class _ResumePageState extends State<ResumePage> {
                         child: Column(
                           children: [
                             _buildAchievementRow(
-                              FontAwesomeIcons.medal,
+                              Icons.star,
                               "Gold Medalist",
                               "Batch 2021-2025",
                             ),
