@@ -1,4 +1,3 @@
-import 'package:dev_icons/dev_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_icons/simple_icons.dart';
 
@@ -17,7 +16,7 @@ class Skill {
     ),
     Skill(
       name: 'Java',
-      icon: DevIcons.javaPlain,
+      icon: SimpleIcons.openjdk,
       color: const Color.fromARGB(255, 233, 72, 27),
     ),
     Skill(
