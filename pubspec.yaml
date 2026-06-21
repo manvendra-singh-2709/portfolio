@@ -58,6 +58,7 @@ dependencies:
   intl: ^0.20.2
   simple_icons:
   dev_icons:
+  flame: ^1.37.0
 
 dev_dependencies:
   flutter_test:
