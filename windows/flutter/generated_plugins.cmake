@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
   flutter_any_logo
+  passkeys_windows
   url_launcher_windows
 )
 

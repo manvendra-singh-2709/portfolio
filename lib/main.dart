@@ -17,8 +17,8 @@ Future<void> main() async {
   await Future.wait([
     Supabase.initialize(
       url: 'https://kypcdyvwffcbubqrybqh.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt5cGNkeXZ3ZmZjYnVicXJ5YnFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4ODE0MjksImV4cCI6MjA4NjQ1NzQyOX0.NVgCvDXMKMq-u2KWYiZ9AlnYXyXubRKk-fPjp94dj5M',
+      publishableKey:
+          'sb_publishable_9YVS2n7DavQwQYXLklUM5w_lQ8WVgzI',
     ),
   ]);
 
