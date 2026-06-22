@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/foundation.dart';
 import 'package:portfolio/game/components/items/checkpoint.dart';
 import 'package:portfolio/game/components/items/fruit.dart';
 import 'package:portfolio/game/components/items/player.dart';
@@ -25,7 +26,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
     level = await TiledComponent.load(
       'Level-$levelName.tmx',
       Vector2.all(16),
-      prefix: 'game/tiles/',
+      prefix: kReleaseMode ? 'assets/game/tiles/' : 'game/tiles/',
     );
 
     add(level);
