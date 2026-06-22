@@ -11,7 +11,6 @@ import 'models/atoms.dart';
 import 'pages/not_found_page.dart';
 import 'routes/app_routes.dart';
 
-// sb_publishable_9YVS2n7DavQwQYXLklUM5w_lQ8WVgzI
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,8 +19,7 @@ Future<void> main() async {
   await Future.wait([
     Supabase.initialize(
       url: 'https://kypcdyvwffcbubqrybqh.supabase.co',
-      publishableKey:
-          'sb_publishable_9YVS2n7DavQwQYXLklUM5w_lQ8WVgzI',
+      publishableKey: 'sb_publishable_9YVS2n7DavQwQYXLklUM5w_lQ8WVgzI',
     ),
   ]);
 
@@ -39,7 +37,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   @override
   void initState() {
     super.initState();
@@ -51,24 +48,20 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Portfolio',
       debugShowCheckedModeBanner: false,
-      scrollBehavior: MyCustomScrollBehavior(), 
+      scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.game,
+      initialRoute: AppRoutes.home,
       routes: AppRoutes.routes,
       onGenerateRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (context) => const NotFoundPage(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (context) => const NotFoundPage());
       },
-      onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(
-        builder: (BuildContext context) => const NotFoundPage(),
-      ),
+      onUnknownRoute: (RouteSettings settings) =>
+          MaterialPageRoute(builder: (BuildContext context) => const NotFoundPage()),
     );
   }
 }
@@ -76,11 +69,11 @@ class _MyAppState extends State<MyApp> {
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-        PointerDeviceKind.invertedStylus,
-        PointerDeviceKind.stylus,
-        PointerDeviceKind.unknown,
-      };
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.trackpad,
+    PointerDeviceKind.invertedStylus,
+    PointerDeviceKind.stylus,
+    PointerDeviceKind.unknown,
+  };
 }

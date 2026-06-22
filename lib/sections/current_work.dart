@@ -51,10 +51,8 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
     if (_isPlaying) _controller.repeat();
   }
 
-  String get _currentMovieTitle =>
-      Global.movieData.keys.elementAt(_currentMovieIndex);
-  List<List<Atom>> get _currentMovieFrames =>
-      Global.movieData[_currentMovieTitle] ?? [];
+  String get _currentMovieTitle => Global.movieData.keys.elementAt(_currentMovieIndex);
+  List<List<Atom>> get _currentMovieFrames => Global.movieData[_currentMovieTitle] ?? [];
 
   void _updateFrame() {
     if (!_isPlaying || _currentMovieFrames.isEmpty) return;
@@ -89,9 +87,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
   @override
   Widget build(BuildContext context) {
     if (Global.movieData.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(color: Colors.white24),
-      );
+      return const Center(child: CircularProgressIndicator(color: Colors.white24));
     }
 
     final atoms = _currentMovieFrames.isNotEmpty
@@ -116,10 +112,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
                   width: double.infinity,
                   color: Colors.transparent,
                   child: CustomPaint(
-                    painter: AtomFramePainter(
-                      atoms: atoms,
-                      rotation: _rotation,
-                    ),
+                    painter: AtomFramePainter(atoms: atoms, rotation: _rotation),
                     child: Stack(children: [_buildHeader()]),
                   ),
                 ),
@@ -127,10 +120,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
 
               // Video Controls Bar
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Column(
                   children: [
                     Row(
@@ -173,11 +163,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
     return Row(
       mainAxisSize: MainAxisSize.min, // Keep it compact for the parent Row
       children: [
-        _navButton(
-          Icons.skip_previous,
-          () => _navigateMovie(false),
-          forward: false,
-        ),
+        _navButton(Icons.skip_previous, () => _navigateMovie(false), forward: false),
         const SizedBox(width: 8),
         _navButton(Icons.skip_next, () => _navigateMovie(true), forward: true),
       ],
@@ -188,10 +174,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
     return Row(
       mainAxisSize: MainAxisSize.min, // Constrains the row to its content
       children: [
-        Text(
-          "$_currentFrameIndex",
-          style: const TextStyle(color: Colors.white70, fontSize: 12),
-        ),
+        Text("$_currentFrameIndex", style: const TextStyle(color: Colors.white70, fontSize: 12)),
         const SizedBox(width: 8),
         // This SizedBox ensures the bar occupies exactly 30% of the screen width
         SizedBox(
@@ -216,10 +199,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
           ),
         ),
         const SizedBox(width: 8),
-        Text(
-          "$maxFrame",
-          style: const TextStyle(color: Colors.white24, fontSize: 12),
-        ),
+        Text("$maxFrame", style: const TextStyle(color: Colors.white24, fontSize: 12)),
       ],
     );
   }
@@ -231,36 +211,22 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
         // Frame Steppers
         Row(
           children: [
-            _navButton(
-              Icons.chevron_left,
-              () => _stepFrame(-1),
-              nextFrame: false,
-            ),
+            _navButton(Icons.chevron_left, () => _stepFrame(-1), nextFrame: false),
             const SizedBox(width: 10),
             IconButton(
               tooltip: _isPlaying ? "Pause" : "Play",
               onPressed: _togglePlay,
-              icon: Icon(
-                _isPlaying ? Icons.pause : Icons.play_arrow,
-                color: Colors.blueAccent,
-              ),
+              icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow, color: Colors.blueAccent),
             ),
             const SizedBox(width: 10),
-            _navButton(
-              Icons.chevron_right,
-              () => _stepFrame(1),
-              nextFrame: true,
-            ),
+            _navButton(Icons.chevron_right, () => _stepFrame(1), nextFrame: true),
           ],
         ),
 
         // Jump to Frame Input
         Row(
           children: [
-            const Text(
-              "Go to frame: ",
-              style: TextStyle(color: Colors.white38, fontSize: 12),
-            ),
+            const Text("Go to frame: ", style: TextStyle(color: Colors.white38, fontSize: 12)),
             SizedBox(
               width: 50,
               height: 30,
@@ -271,9 +237,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 5),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white.withValues(alpha: 0.1),
-                    ),
+                    borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueAccent),
@@ -301,12 +265,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
     });
   }
 
-  Widget _navButton(
-    IconData icon,
-    VoidCallback onPressed, {
-    bool? forward,
-    bool? nextFrame,
-  }) {
+  Widget _navButton(IconData icon, VoidCallback onPressed, {bool? forward, bool? nextFrame}) {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
@@ -314,9 +273,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
       ),
       child: IconButton(
         tooltip: forward == null
-            ? (nextFrame == null
-                  ? null
-                  : (nextFrame ? "Next Frame" : "Previous Frame"))
+            ? (nextFrame == null ? null : (nextFrame ? "Next Frame" : "Previous Frame"))
             : (forward ? "Next" : "Previous"),
         onPressed: onPressed,
         iconSize: 20,
@@ -338,8 +295,7 @@ class AtomFramePainter extends CustomPainter {
     final Offset screenCenter = Offset(size.width / 2, size.height / 2);
     final vmath.Vector3 latticeCenter = vmath.Vector3(10.7, 10.7, 16.85);
 
-    final List<({Offset pos, Color color, double radius, double depth})>
-    projected = [];
+    final List<({Offset pos, Color color, double radius, double depth})> projected = [];
 
     for (var atom in atoms) {
       double x = atom.x - latticeCenter.x;
@@ -385,12 +341,7 @@ class AtomFramePainter extends CustomPainter {
           radius = 2.0;
       }
 
-      projected.add((
-        pos: screenPos,
-        color: color,
-        radius: radius * perspective,
-        depth: z2,
-      ));
+      projected.add((pos: screenPos, color: color, radius: radius * perspective, depth: z2));
     }
 
     projected.sort((a, b) => b.depth.compareTo(a.depth));

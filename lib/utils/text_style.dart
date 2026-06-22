@@ -31,28 +31,22 @@ class LargeTextStyles extends AppTextStyles {
   );
 
   @override
-  TextStyle titleLGbold() =>
-      const TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
+  TextStyle titleLGbold() => const TextStyle(fontSize: 40, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle titleMDmedium() =>
-      const TextStyle(fontSize: 32, fontWeight: FontWeight.w500);
+  TextStyle titleMDmedium() => const TextStyle(fontSize: 32, fontWeight: FontWeight.w500);
 
   @override
-  TextStyle titleSMbold() =>
-      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+  TextStyle titleSMbold() => const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle bodyLGbold() =>
-      const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+  TextStyle bodyLGbold() => const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle bodyLGmedium() =>
-      const TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
+  TextStyle bodyLGmedium() => const TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
 
   @override
-  TextStyle bodyMDmedium() =>
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+  TextStyle bodyMDmedium() => const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
 }
 
 class SmallTextStyles extends AppTextStyles {
@@ -73,26 +67,20 @@ class SmallTextStyles extends AppTextStyles {
   );
 
   @override
-  TextStyle titleLGbold() =>
-      const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
+  TextStyle titleLGbold() => const TextStyle(fontSize: 28, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle titleMDmedium() =>
-      const TextStyle(fontSize: 24, fontWeight: FontWeight.w500);
+  TextStyle titleMDmedium() => const TextStyle(fontSize: 24, fontWeight: FontWeight.w500);
 
   @override
-  TextStyle titleSMbold() =>
-      const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
+  TextStyle titleSMbold() => const TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle bodyLGbold() =>
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  TextStyle bodyLGbold() => const TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle bodyLGmedium() =>
-      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+  TextStyle bodyLGmedium() => const TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
 
   @override
-  TextStyle bodyMDmedium() =>
-      const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+  TextStyle bodyMDmedium() => const TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
 }

@@ -71,10 +71,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
             top: 100, // Distance from top
             left: 20,
             right: 20,
-            child: Material(
-              color: Colors.transparent,
-              child: _buildMobileOverlay(),
-            ),
+            child: Material(color: Colors.transparent, child: _buildMobileOverlay()),
           ),
         ],
       ),
@@ -100,11 +97,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                 ),
               ),
               if (context.isDesktop)
-                Row(
-                  children: Navbar._navItems
-                      .map((item) => _buildDesktopItem(item))
-                      .toList(),
-                )
+                Row(children: Navbar._navItems.map((item) => _buildDesktopItem(item)).toList())
               else
                 _buildAnimatedMenuIcon(),
             ],
@@ -120,9 +113,7 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: const Color(
-              0xFF4FACFE,
-            ).withValues(alpha: widget.isMenuOpen ? 0.6 : 0),
+            color: const Color(0xFF4FACFE).withValues(alpha: widget.isMenuOpen ? 0.6 : 0),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -140,7 +131,8 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
   }
 
   Widget _buildMobileOverlay() {
-    return GlassContainer(child: Padding(
+    return GlassContainer(
+      child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           mainAxisSize: MainAxisSize.min,

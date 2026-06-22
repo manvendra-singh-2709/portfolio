@@ -32,14 +32,8 @@ class _HoverNavItemState extends State<HoverNavItem> {
             // The "Glow" Effect using shadows
             shadows: isHovered
                 ? ([
-                    Shadow(
-                      color: Colors.blue.withValues(alpha: 0.8),
-                      blurRadius: 15,
-                    ),
-                    Shadow(
-                      color: Colors.blue.withValues(alpha: 0.5),
-                      blurRadius: 30,
-                    ),
+                    Shadow(color: Colors.blue.withValues(alpha: 0.8), blurRadius: 15),
+                    Shadow(color: Colors.blue.withValues(alpha: 0.5), blurRadius: 30),
                   ])
                 : [],
           ),

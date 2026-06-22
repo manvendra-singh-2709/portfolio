@@ -11,22 +11,19 @@ class ApiCaller {
 
   static Stream<List<Project>> getProjects() {
     try {
-      return supabase
-          .from('Projects')
-          .stream(primaryKey: ['id']) 
-          .map((data) {
-            final List<Project> projects = data.map((json) {
-              return Project(
-                id: json['id'],
-                name: json['title'] ?? 'No Title',
-                description: json['desc'] ?? 'No Description',
-                icon: Project.getIconData(json['icon']),
-              );
-            }).toList();
+      return supabase.from('Projects').stream(primaryKey: ['id']).map((data) {
+        final List<Project> projects = data.map((json) {
+          return Project(
+            id: json['id'],
+            name: json['title'] ?? 'No Title',
+            description: json['desc'] ?? 'No Description',
+            icon: Project.getIconData(json['icon']),
+          );
+        }).toList();
 
-            projects.sort((a, b) => a.id.compareTo(b.id));
-            return projects;
-          });
+        projects.sort((a, b) => a.id.compareTo(b.id));
+        return projects;
+      });
     } catch (e) {
       log('Error fetching projects: $e');
       return Stream.empty();

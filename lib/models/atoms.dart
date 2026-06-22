@@ -5,12 +5,7 @@ import '../utils/constants.dart';
 class Atom {
   final String species;
   final double x, y, z;
-  Atom({
-    required this.species,
-    required this.x,
-    required this.y,
-    required this.z,
-  });
+  Atom({required this.species, required this.x, required this.y, required this.z});
 }
 
 class ProjectData {

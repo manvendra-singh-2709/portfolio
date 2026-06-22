@@ -13,10 +13,7 @@ class SkillsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: Column(
         children: [
-          const Text(
-            'My Skills',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
+          const Text('My Skills', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           const SizedBox(height: 30),
           Wrap(
             spacing: 20,
@@ -35,10 +32,7 @@ class SkillsSection extends StatelessWidget {
                         children: [
                           Icon(skill.icon, size: 40, color: skill.color),
                           const SizedBox(height: 10),
-                          Text(
-                            skill.name,
-                            style: const TextStyle(fontWeight: FontWeight.w500),
-                          ),
+                          Text(skill.name, style: const TextStyle(fontWeight: FontWeight.w500)),
                         ],
                       ),
                     ),

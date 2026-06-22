@@ -50,15 +50,12 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _swingController = AnimationController(
-      vsync: this,
-      duration: widget.duration,
-    )..value = 0.5;
+    _swingController = AnimationController(vsync: this, duration: widget.duration)..value = 0.5;
 
-    _swingAnimation =
-        Tween<double>(begin: -widget.endAngle, end: widget.endAngle).animate(
-          CurvedAnimation(parent: _swingController, curve: Curves.easeInOut),
-        );
+    _swingAnimation = Tween<double>(
+      begin: -widget.endAngle,
+      end: widget.endAngle,
+    ).animate(CurvedAnimation(parent: _swingController, curve: Curves.easeInOut));
 
     _sequenceController = AnimationController(
       vsync: this,
@@ -91,8 +88,7 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
   Future<void> _runSequence() async {
     if (_isAnimating || _isDragging) return;
 
-    final RenderBox box =
-        _logoKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox box = _logoKey.currentContext!.findRenderObject() as RenderBox;
 
     final Offset widgetPos = box.localToGlobal(Offset.zero);
     final Size widgetSize = box.size;
@@ -157,10 +153,10 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
   }
 
   void _endDrag(DragEndDetails details) {
-    final springAnim = Tween<Offset>(begin: _dragOffset, end: Offset.zero)
-        .animate(
-          CurvedAnimation(parent: _springController, curve: Curves.elasticOut),
-        );
+    final springAnim = Tween<Offset>(
+      begin: _dragOffset,
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _springController, curve: Curves.elasticOut));
 
     _springController.addListener(() {
       setState(() {
@@ -205,34 +201,22 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
           width: widget.size,
           height: widget.size,
           child: AnimatedBuilder(
-            animation: Listenable.merge([
-              _swingController,
-              _sequenceController,
-              _springController,
-            ]),
+            animation: Listenable.merge([_swingController, _sequenceController, _springController]),
             builder: (context, child) {
               double shakeAngle = 0;
 
               if (_isAnimating &&
                   _sequenceController.value >= 0.25 &&
                   _sequenceController.value <= 0.5) {
-                shakeAngle =
-                    sin(_sequenceController.value * 100) * _shakeAnim.value;
+                shakeAngle = sin(_sequenceController.value * 100) * _shakeAnim.value;
               }
 
               return Transform.translate(
-                offset:
-                    _dragOffset +
-                    (_isAnimating ? _moveToCenter.value : Offset.zero),
+                offset: _dragOffset + (_isAnimating ? _moveToCenter.value : Offset.zero),
                 child: Transform.rotate(
-                  angle: _isAnimating
-                      ? shakeAngle
-                      : (_isDragging ? 0 : _swingAnimation.value),
+                  angle: _isAnimating ? shakeAngle : (_isDragging ? 0 : _swingAnimation.value),
                   alignment: Alignment(0, widget.pivotOffset),
-                  child: Transform.scale(
-                    scale: _isAnimating ? _scaleUp.value : 1,
-                    child: child,
-                  ),
+                  child: Transform.scale(scale: _isAnimating ? _scaleUp.value : 1, child: child),
                 ),
               );
             },

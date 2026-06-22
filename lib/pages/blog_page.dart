@@ -67,18 +67,12 @@ class _BlogPageState extends State<BlogPage> {
                       children: [
                         IconButton(
                           onPressed: () => Navigator.pop(context),
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white70,
-                          ),
+                          icon: const Icon(Icons.arrow_back_ios, color: Colors.white70),
                         ),
                         const SizedBox(height: 20),
                         const Text(
                           'Research Blog',
-                          style: TextStyle(
-                            fontSize: 42,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 10),
                         const Text(
@@ -93,10 +87,7 @@ class _BlogPageState extends State<BlogPage> {
                 ),
 
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 10,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final blog = Global.blogs[index];
@@ -126,28 +117,16 @@ class _BlogPageState extends State<BlogPage> {
                 children: [
                   Text(
                     DateFormat('MMMM d, yyyy').format(blog.time),
-                    style: const TextStyle(
-                      color: Color(0xFF4FACFE),
-                      fontSize: 14,
-                    ),
+                    style: const TextStyle(color: Color(0xFF4FACFE), fontSize: 14),
                   ),
                   Text(
                     DateFormat('h:mm a').format(blog.time),
-                    style: const TextStyle(
-                      color: Color(0xFF4FACFE),
-                      fontSize: 14,
-                    ),
+                    style: const TextStyle(color: Color(0xFF4FACFE), fontSize: 14),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
-              Text(
-                blog.title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(blog.title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               const SizedBox(height: 15),
               Text(
                 blog.content,

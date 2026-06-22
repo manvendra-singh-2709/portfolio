@@ -6,12 +6,7 @@ class Project {
   final String description;
   final ({IconData icon, Color color}) icon;
 
-  Project({
-    required this.name,
-    required this.description,
-    required this.icon,
-    required this.id,
-  });
+  Project({required this.name, required this.description, required this.icon, required this.id});
 
   static ({IconData icon, Color color}) getIconData(String item) {
     switch (item) {
@@ -20,10 +15,7 @@ class Project {
       case 'mFieldTrip':
         return (icon: Icons.hiking, color: Colors.greenAccent);
       case 'lib':
-        return (
-          icon: Icons.battery_charging_full_outlined,
-          color: Colors.lightGreen,
-        );
+        return (icon: Icons.battery_charging_full_outlined, color: Colors.lightGreen);
       case 'thin_film':
         return (icon: Icons.sensors, color: Colors.amberAccent);
       case 'doctors_hand':

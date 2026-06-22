@@ -14,6 +14,7 @@ class Global {
   static List<Blog> blogs = [];
   static PixelAdventure? game;
   static String imagesPrefix = 'assets/game/images/';
+  static double tileSize = 64;
 
   Global() {
     log("Global Invoked");

@@ -59,6 +59,5 @@ extension StyledContext on BuildContext {
   TextStyle get bodyLGmedium => textStyle.bodyLGmedium();
   TextStyle get bodyMDmedium => textStyle.bodyMDmedium();
   TextStyle get textStyleHeadingBig => textStyle.textStyleHeadingBig(insets);
-  TextStyle get textStyleHeadingSmall =>
-      textStyle.textStyleHeadingSmall(insets);
+  TextStyle get textStyleHeadingSmall => textStyle.textStyleHeadingSmall(insets);
 }

@@ -30,14 +30,11 @@ class _HeroSectionState extends State<HeroSection> {
                           color: Colors.blue.withValues(alpha: 0.6),
                           blurRadius: 30,
                           spreadRadius: 10,
-                        )
+                        ),
                       ]
                     : [],
               ),
-              child: const CircleAvatar(
-                radius: 100,
-                backgroundImage: AssetImage(Images.pf2),
-              ),
+              child: const CircleAvatar(radius: 100, backgroundImage: AssetImage(Images.pf2)),
             ),
           ),
           const SizedBox(height: 30),
@@ -51,4 +48,3 @@ class _HeroSectionState extends State<HeroSection> {
     );
   }
 }
-

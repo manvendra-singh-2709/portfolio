@@ -58,7 +58,7 @@ class NotFoundPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                
+
                 // Return Button using a similar aesthetic to your ResumePage cards
                 InkWell(
                   onTap: () => Navigator.pop(context),

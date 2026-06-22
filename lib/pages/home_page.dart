@@ -83,12 +83,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           if (_isMenuOpen)
-            Positioned(
-              top: 100, 
-              left: 20,
-              right: 20,
-              child: _buildMobileMenuOverlay(),
-            ),
+            Positioned(top: 100, left: 20, right: 20, child: _buildMobileMenuOverlay()),
         ],
       ),
     );
@@ -98,13 +93,19 @@ class _HomePageState extends State<HomePage> {
     return GlassContainer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: ['Home', 'Projects', 'Resume', 'Blogs', 'Contact'].map((item) => ListTile(
-          title: Center(child: Text(item, style: const TextStyle(color: Colors.white))),
-          onTap: () {
-            setState(() => _isMenuOpen = false); // Close menu
-            _scrollToSection(item); // Or navigate
-          },
-        )).toList(),
+        children: ['Home', 'Projects', 'Resume', 'Blogs', 'Contact']
+            .map(
+              (item) => ListTile(
+                title: Center(
+                  child: Text(item, style: const TextStyle(color: Colors.white)),
+                ),
+                onTap: () {
+                  setState(() => _isMenuOpen = false); // Close menu
+                  _scrollToSection(item); // Or navigate
+                },
+              ),
+            )
+            .toList(),
       ),
     );
   }

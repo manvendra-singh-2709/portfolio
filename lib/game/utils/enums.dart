@@ -15,6 +15,8 @@ enum PlayerState {
   jump(name: 'Jump', frames: 1),
   wallJump(name: 'Wall Jump', frames: 5),
   hit(name: 'Hit', frames: 7),
+  appearing(name: 'Appearing', frames: 7),
+  disappearing(name: 'Disappearing', frames: 7),
   fall(name: 'Fall', frames: 1),
   doubleJump(name: 'Double Jump', frames: 6);
 
@@ -24,7 +26,17 @@ enum PlayerState {
   final int frames;
 }
 
-enum PlayerDirection {left, right, none}
+enum CheckpointState {
+  noFlag(name: '(No Flag)', frames: 1, loop: true),
+  flagOut(name: '(Flag Out) (64x64)', frames: 26, loop: false),
+  flagIdle(name: '(Flag Idle) (64x64)', frames: 10, loop: true);
+
+  const CheckpointState({required this.name, required this.frames, required this.loop});
+
+  final String name;
+  final int frames;
+  final bool loop;
+}
 
 enum Layers {
   spawnPoints('Spawnpoints');

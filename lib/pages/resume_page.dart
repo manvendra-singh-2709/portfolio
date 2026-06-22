@@ -42,41 +42,24 @@ class _ResumePageState extends State<ResumePage> {
                           children: [
                             IconButton(
                               onPressed: () => Navigator.pop(context),
-                              icon: const Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white70,
-                              ),
+                              icon: const Icon(Icons.arrow_back_ios, color: Colors.white70),
                             ),
                             IconButton(
-                              onPressed: () => openUrl(
-                                "cv.pdf",
-                              ), 
+                              onPressed: () => openUrl("cv.pdf"),
                               tooltip: "View Full CV",
-                              icon: const Icon(
-                                Icons.download,
-                                color: Color(
-                                  0xFF4FACFE,
-                                ), 
-                                size: 28,
-                              ),
+                              icon: const Icon(Icons.download, color: Color(0xFF4FACFE), size: 28),
                             ),
                           ],
                         ),
                         const SizedBox(height: 20),
                         const Text(
                           "Manvendra Singh",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                         ),
                         _buildLinksSection(),
                         const Text(
                           "Research Scholar @ IIT Kanpur |AIR 2- GATE 2025 (CH) | Gold Medalist- NIT Jaipur 2025 | MITACS-GRI 2024 🇨🇦 | Chemical Engineering",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF4FACFE),
-                          ),
+                          style: TextStyle(fontSize: 18, color: Color(0xFF4FACFE)),
                         ),
                         const SizedBox(height: 20),
                         _buildObjectiveSection(),
@@ -96,10 +79,7 @@ class _ResumePageState extends State<ResumePage> {
                           children: [
                             const Text(
                               "Ph.D in Chemical Engineering",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             const Text("IIT Kanpur | 2025 - Present"),
                             const Text(
@@ -118,10 +98,7 @@ class _ResumePageState extends State<ResumePage> {
                           children: [
                             const Text(
                               "B.Tech. in Chemical Engineering",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             const Text("MNIT Jaipur | 2021 - 2025"),
                             const Text(
@@ -207,11 +184,7 @@ class _ResumePageState extends State<ResumePage> {
                       _buildGlassCard(
                         child: Column(
                           children: [
-                            _buildAchievementRow(
-                              Icons.star,
-                              "Gold Medalist",
-                              "Batch 2021-2025",
-                            ),
+                            _buildAchievementRow(Icons.star, "Gold Medalist", "Batch 2021-2025"),
                             _buildAchievementRow(
                               Icons.emoji_events,
                               "All India Rank 2",
@@ -252,9 +225,7 @@ class _ResumePageState extends State<ResumePage> {
           _buildTextLink(
             "LinkedIn: ",
             "manvendra-singh-08a233222",
-            () => openUrl(
-              "https://www.linkedin.com/in/manvendra-singh-08a233222/",
-            ),
+            () => openUrl("https://www.linkedin.com/in/manvendra-singh-08a233222/"),
           ),
         ],
       ),
@@ -268,10 +239,7 @@ class _ResumePageState extends State<ResumePage> {
         children: [
           TextSpan(
             text: label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           WidgetSpan(
             alignment: PlaceholderAlignment.baseline,
@@ -280,10 +248,7 @@ class _ResumePageState extends State<ResumePage> {
               onTap: onTap,
               child: Text(
                 linkText,
-                style: TextStyle(
-                  color: const Color(0xFF4FACFE),
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: const Color(0xFF4FACFE), fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -295,11 +260,7 @@ class _ResumePageState extends State<ResumePage> {
   Widget _buildObjectiveSection() {
     return Text(
       "I aim to advance the frontiers of computational materials science by integrating Machine Learning Interatomic Potentials (MLIP) and global optimization techniques into robust Molecular Dynamics (MD) workflows. I aim to design and simulate next-generation materials—focusing on catalytic systems to drive scalable, resource-efficient technologies for environmental sustainability and reaction dynamics.",
-      style: TextStyle(
-        color: Colors.white.withValues(alpha: 0.7),
-        fontSize: 16,
-        height: 1.5,
-      ),
+      style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 16, height: 1.5),
     );
   }
 
@@ -338,26 +299,14 @@ class _ResumePageState extends State<ResumePage> {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
-              Text(
-                date,
-                style: const TextStyle(color: Colors.white38, fontSize: 12),
-              ),
+              Text(date, style: const TextStyle(color: Colors.white38, fontSize: 12)),
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            desc,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
-              fontSize: 14,
-            ),
-          ),
+          Text(desc, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14)),
         ],
       ),
     );
@@ -368,10 +317,7 @@ class _ResumePageState extends State<ResumePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 5),
           Text(
             location,
@@ -384,23 +330,14 @@ class _ResumePageState extends State<ResumePage> {
           const SizedBox(height: 12),
           Text(
             desc,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
-              fontSize: 14,
-              height: 1.5,
-            ),
+            style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildVolunteerItem(
-    String title,
-    String date,
-    String desc,
-    IconData icon,
-  ) {
+  Widget _buildVolunteerItem(String title, String date, String desc, IconData icon) {
     return _buildGlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -412,27 +349,17 @@ class _ResumePageState extends State<ResumePage> {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          Text(
-            date,
-            style: const TextStyle(color: Colors.white38, fontSize: 12),
-          ),
+          Text(date, style: const TextStyle(color: Colors.white38, fontSize: 12)),
           const SizedBox(height: 12),
           Text(
             desc,
-            style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.7),
-              fontSize: 14,
-              height: 1.5,
-            ),
+            style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5),
           ),
         ],
       ),
@@ -462,10 +389,7 @@ class _ResumePageState extends State<ResumePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-              Text(
-                sub,
-                style: const TextStyle(color: Colors.white38, fontSize: 12),
-              ),
+              Text(sub, style: const TextStyle(color: Colors.white38, fontSize: 12)),
             ],
           ),
         ],

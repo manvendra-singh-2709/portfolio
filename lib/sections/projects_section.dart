@@ -99,10 +99,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                   ),
                 ),
               )
-            : Text(
-                label,
-                style: TextStyle(fontSize: context.insets.fontSizeTitles),
-              ),
+            : Text(label, style: TextStyle(fontSize: context.insets.fontSizeTitles)),
       ),
     );
   }
@@ -135,14 +132,11 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) =>
-                _buildProjectCard(snapshot.data![index], context),
+            itemBuilder: (context, index) => _buildProjectCard(snapshot.data![index], context),
           );
         }
 
-        return const Center(
-          child: CircularProgressIndicator(color: Colors.white24),
-        );
+        return const Center(child: CircularProgressIndicator(color: Colors.white24));
       },
     );
   }
@@ -164,10 +158,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
                   Expanded(
                     child: Text(
                       project.name,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -178,10 +169,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
                 textAlign: TextAlign.justify,
                 overflow: TextOverflow.ellipsis,
                 maxLines: context.isMobile ? 7 : 10,
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.8),
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 16),
               ),
               const Spacer(),
               TextButton(
@@ -212,11 +200,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
-                        project.icon.icon,
-                        color: project.icon.color,
-                        size: 40,
-                      ),
+                      Icon(project.icon.icon, color: project.icon.color, size: 40),
                       IconButton(
                         icon: const Icon(Icons.close, color: Colors.white),
                         onPressed: () => Navigator.pop(context),
@@ -231,19 +215,12 @@ class _PersistentProjectsListState extends State<PersistentProjectsList>
                         children: [
                           Text(
                             project.name,
-                            style: const TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 20),
                           Text(
                             project.description,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              height: 1.5,
-                            ),
+                            style: const TextStyle(fontSize: 18, color: Colors.white, height: 1.5),
                           ),
                         ],
                       ),

@@ -65,9 +65,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
                 color: const Color(0xCC1A1A1A),
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
-                  color: isError
-                      ? Colors.redAccent.withValues(alpha: 0.5)
-                      : Colors.white10,
+                  color: isError ? Colors.redAccent.withValues(alpha: 0.5) : Colors.white10,
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -87,10 +85,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
                   ),
                   const SizedBox(width: 12),
                   Flexible(
-                    child: Text(
-                      text,
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
-                    ),
+                    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14)),
                   ),
                 ],
               ),
@@ -149,19 +144,11 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
                 children: [
                   _buildLabel("Post Title"),
                   const SizedBox(height: 10),
-                  _buildTextField(
-                    _titleController,
-                    "e.g., Pt Cluster Relaxation Progress",
-                    1,
-                  ),
+                  _buildTextField(_titleController, "e.g., Pt Cluster Relaxation Progress", 1),
                   const SizedBox(height: 30),
                   _buildLabel("Content"),
                   const SizedBox(height: 10),
-                  _buildTextField(
-                    _contentController,
-                    "Describe your simulation findings...",
-                    10,
-                  ),
+                  _buildTextField(_contentController, "Describe your simulation findings...", 10),
                   const SizedBox(height: 40),
                   _buildSubmitButton(),
                 ],
@@ -176,19 +163,11 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
   Widget _buildLabel(String text) {
     return Text(
       text,
-      style: const TextStyle(
-        color: Colors.white70,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
+      style: const TextStyle(color: Colors.white70, fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 
-  Widget _buildTextField(
-    TextEditingController controller,
-    String hint,
-    int lines,
-  ) {
+  Widget _buildTextField(TextEditingController controller, String hint, int lines) {
     return TextField(
       controller: controller,
       maxLines: lines,
@@ -218,16 +197,11 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
         onPressed: _isUploading ? null : _handlePost,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blueAccent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
         child: _isUploading
             ? const CircularProgressIndicator(color: Colors.white)
-            : const Text(
-                "Post Update",
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
+            : const Text("Post Update", style: TextStyle(fontSize: 18, color: Colors.white)),
       ),
     );
   }

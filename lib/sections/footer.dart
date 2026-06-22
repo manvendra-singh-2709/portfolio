@@ -23,17 +23,11 @@ class _FooterState extends State<Footer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _socialIcon(
-                IconFromImage.linkedin,
-                links[IconFromImage.linkedin]!,
-              ),
+              _socialIcon(IconFromImage.linkedin, links[IconFromImage.linkedin]!),
               const SizedBox(width: 40),
               _socialIcon(IconFromImage.github, links[IconFromImage.github]!),
               const SizedBox(width: 40),
-              _socialIcon(
-                IconFromImage.instagram,
-                links[IconFromImage.instagram]!,
-              ),
+              _socialIcon(IconFromImage.instagram, links[IconFromImage.instagram]!),
               const SizedBox(width: 40),
               _socialIcon(IconFromImage.gmail, links[IconFromImage.gmail]!),
             ],
@@ -42,11 +36,7 @@ class _FooterState extends State<Footer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                IconFromImage.flutter,
-                width: Insets.xxl,
-                height: Insets.xxl,
-              ),
+              Image.asset(IconFromImage.flutter, width: Insets.xxl, height: Insets.xxl),
               Gap(Insets.lg),
               Text('Built with Flutter.', style: TextStyle(fontSize: 20)),
             ],
@@ -61,11 +51,7 @@ class _FooterState extends State<Footer> {
       onTap: () {
         openUrl(link);
       },
-      child: Image.asset(
-        image,
-        width: Insets.xxxl * 0.7,
-        height: Insets.xxxl * 0.7,
-      ),
+      child: Image.asset(image, width: Insets.xxxl * 0.7, height: Insets.xxxl * 0.7),
     );
   }
 }

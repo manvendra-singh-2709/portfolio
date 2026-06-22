@@ -4,10 +4,5 @@ class Blog {
   final DateTime time;
   final String content;
 
-  Blog({
-    required this.content,
-    required this.title,
-    required this.time,
-    required this.id,
-  });
+  Blog({required this.content, required this.title, required this.time, required this.id});
 }

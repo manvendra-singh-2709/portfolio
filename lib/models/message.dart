@@ -4,10 +4,5 @@ class Message {
   final String email;
   final String message;
 
-  Message({
-    required this.name,
-    required this.email,
-    required this.message,
-    required this.id,
-  });
+  Message({required this.name, required this.email, required this.message, required this.id});
 }
