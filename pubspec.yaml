@@ -59,6 +59,7 @@ dependencies:
   simple_icons:
   dev_icons:
   flame: ^1.37.0
+  flame_tiled: ^3.1.1
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,45 @@ flutter:
     - assets/icons/
     - assets/animations/
     - assets/pdfs/
+    - assets/game/images/
+    - assets/game/images/Terrain/
+    - assets/game/images/Background/
+    - assets/game/images/Items/
+    - assets/game/images/Items/Boxes/
+    - assets/game/images/Items/Boxes/Box1/
+    - assets/game/images/Items/Boxes/Box2/
+    - assets/game/images/Items/Boxes/Box3/
+    - assets/game/images/Items/Checkpoints/
+    - assets/game/images/Items/Checkpoints/Checkpoint/
+    - assets/game/images/Items/Checkpoints/End/
+    - assets/game/images/Items/Checkpoints/Start/
+    - assets/game/images/Items/Fruits/
+    - assets/game/images/Main Characters/
+    - assets/game/images/Main Characters/Mask Dude/
+    - assets/game/images/Main Characters/Ninja Frog/
+    - assets/game/images/Main Characters/Pink Man/
+    - assets/game/images/Main Characters/Virtual Guy/
+    - assets/game/images/Menu/
+    - assets/game/images/Menu/Buttons/
+    - assets/game/images/Menu/Levels/
+    - assets/game/images/Menu/Text/
+    - assets/game/images/Other/
+    - assets/game/images/Terrain/
+    - assets/game/images/Traps/
+    - assets/game/images/Traps/Arrow/
+    - assets/game/images/Traps/Blocks/
+    - assets/game/images/Traps/Falling Platforms/
+    - assets/game/images/Traps/Fan/
+    - assets/game/images/Traps/Fire/
+    - assets/game/images/Traps/Platforms/
+    - assets/game/images/Traps/Rock Head/
+    - assets/game/images/Traps/Sand Mud Ice/
+    - assets/game/images/Traps/Saw/
+    - assets/game/images/Traps/Spike Head/
+    - assets/game/images/Traps/Spiked Ball/
+    - assets/game/images/Traps/Spikes/
+    - assets/game/images/Traps/Trampoline/
+    - assets/game/tiles/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

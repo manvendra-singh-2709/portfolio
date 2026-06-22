@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:portfolio/game/pixel_adventure.dart';
+
 import '../data/api_caller.dart';
 import '../models/blog.dart';
 import '../models/project.dart';
@@ -10,9 +12,12 @@ class Global {
   static Map<String, List<List<Atom>>> movieData = {};
   static List<Project> projectsList = [];
   static List<Blog> blogs = [];
+  static PixelAdventure? game;
+  static String imagesPrefix = 'assets/game/images/';
 
   Global() {
     log("Global Invoked");
+    game = PixelAdventure();
     getData();
   }
 

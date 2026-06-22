@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -13,6 +14,8 @@ import 'routes/app_routes.dart';
 // sb_publishable_9YVS2n7DavQwQYXLklUM5w_lQ8WVgzI
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Flame.device.fullScreen();
 
   await Future.wait([
     Supabase.initialize(
@@ -55,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.game,
       routes: AppRoutes.routes,
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(
@@ -70,12 +73,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// Ensure your ScrollBehavior is defined outside the class
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
         PointerDeviceKind.trackpad,
+        PointerDeviceKind.invertedStylus,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
       };
 }
