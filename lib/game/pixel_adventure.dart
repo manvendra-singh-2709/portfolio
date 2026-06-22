@@ -38,10 +38,6 @@ class PixelAdventure extends FlameGame
     await _loadLevel();
 
     await cam.loaded;
-
-    if (showControls) {
-      addJoystick();
-    }
   }
 
   Future<bool> loadNextLevel() async {
@@ -76,6 +72,12 @@ class PixelAdventure extends FlameGame
 
     await addAll([cam, currentLevelComponent!]);
     await cam.loaded;
+
+    await cam.loaded;
+
+    if (showControls) {
+      addJoystick();
+    }
   }
 
   @override
@@ -87,9 +89,17 @@ class PixelAdventure extends FlameGame
   }
 
   @override
-  void onTapDown(TapDownEvent event) {
+  void onTapUp(TapUpEvent event) {
+    final tap = event.canvasPosition;
+
+    // ignore joystick area
+    if (tap.x < size.x * 0.45 && tap.y > size.y * 0.45) {
+      return;
+    }
+
     player.hasJumped = true;
-    super.onTapDown(event);
+
+    super.onTapUp(event);
   }
 
   void addJoystick() {
@@ -121,6 +131,8 @@ class PixelAdventure extends FlameGame
       case JoystickDirection.downRight:
         player.joystickHorizontalMovement = 1;
         break;
+      case JoystickDirection.up:
+        player.hasJumped = true;
       default:
         player.joystickHorizontalMovement = 0;
         break;
