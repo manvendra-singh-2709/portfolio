@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'extensions.dart';
+import 'package:portfolio/utils/extensions.dart';
 
 class HoverNavItem extends StatefulWidget {
   final String title;

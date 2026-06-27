@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/extensions.dart';
-import '../widgets/glass_container.dart';
-import '../utils/nav_bar_item.dart';
+import 'package:portfolio/utils/extensions.dart';
+import 'package:portfolio/utils/nav_bar_item.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class Navbar extends StatefulWidget {
   final Function(String) onNavItemTap;

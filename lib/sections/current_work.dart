@@ -1,10 +1,10 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:portfolio/globals/globals.dart';
+import 'package:portfolio/models/atoms.dart';
+import 'package:portfolio/utils/extensions.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 import 'package:vector_math/vector_math_64.dart' as vmath;
-import '../utils/extensions.dart';
-import '../globals/globals.dart';
-import '../models/atoms.dart';
-import '../widgets/glass_container.dart';
 
 class CurrentWorkSimulation extends StatefulWidget {
   const CurrentWorkSimulation({super.key});

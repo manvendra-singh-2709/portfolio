@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/helpers.dart';
-import '../widgets/glass_container.dart';
+import 'package:portfolio/utils/helpers.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class ResumePage extends StatefulWidget {
   const ResumePage({super.key});

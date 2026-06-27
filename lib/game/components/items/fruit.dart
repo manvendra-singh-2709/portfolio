@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
-import 'package:portfolio/game/pixel_adventure.dart';
+import 'package:portfolio/game/components/items/sprite_entity.dart';
+import 'package:portfolio/game/components/levels/level.dart';
 
-class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventure> {
+class Fruit extends SpriteEntity {
   final String fruit;
   final double stepTime = 0.05;
   bool _collected = false;
+
+  late Level level;
 
   final CustomHitbox hitbox = CustomHitbox(offsetX: 10, offsetY: 10, width: 12, height: 12);
 
@@ -43,6 +46,7 @@ class Fruit extends SpriteAnimationComponent with HasGameReference<PixelAdventur
         ),
       );
       _collected = true;
+      level.fruitCollected();
     }
     Future.delayed(const Duration(microseconds: 400), () => removeFromParent());
   }

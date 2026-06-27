@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="61">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="63">
  <tileset firstgid="1" source="Pixel_Adventure.tsx"/>
  <layer id="1" name="Background" width="40" height="23">
   <properties>
-   <property name="BackgroundColor" value="Green"/>
+   <property name="BackgroundColor" value="Blue"/>
   </properties>
   <data encoding="csv">
 24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,
@@ -65,20 +65,16 @@
   <object id="53" name="Orange" type="Fruit" x="432" y="80" width="32" height="32"/>
   <object id="54" name="Pineapple" type="Fruit" x="480" y="128" width="32" height="32"/>
   <object id="55" name="Melon" type="Fruit" x="480" y="176" width="32" height="32"/>
-  <object id="57" type="Saw" x="288" y="288" width="32" height="32">
+  <object id="57" type="Fan" x="208" y="296" width="24" height="8">
    <properties>
-    <property name="isVertical" type="bool" value="false"/>
-    <property name="offNeg" type="float" value="8"/>
-    <property name="offPos" type="float" value="7"/>
-   </properties>
-  </object>
-  <object id="58" type="Saw" x="288" y="128" width="32" height="32">
-   <properties>
-    <property name="isVertical" type="bool" value="true"/>
-    <property name="offNeg" type="float" value="4"/>
-    <property name="offPos" type="float" value="3"/>
+    <property name="on" type="bool" value="false"/>
    </properties>
   </object>
   <object id="60" type="Checkpoint" x="512" y="144" width="64" height="64"/>
+  <object id="61" type="Fan" x="352" y="296" width="24" height="8">
+   <properties>
+    <property name="on" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

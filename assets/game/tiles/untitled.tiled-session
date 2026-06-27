@@ -1,6 +1,7 @@
 {
-    "activeFile": "Pixel Adventure.tsx",
+    "activeFile": "",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "Level-01.tmx": {
@@ -8,10 +9,10 @@
                 2
             ],
             "scale": 1.01,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 267.3267326732673,
-                "y": 66.33663366336629
+                "x": 473.76237623762376,
+                "y": 64.35643564356434
             }
         },
         "Level-02.tmx": {
@@ -19,11 +20,19 @@
                 2,
                 3
             ],
-            "scale": 1.7274,
+            "scale": 0.9664,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 304.50387866157234,
-                "y": 254.13916869283318
+                "x": 488.9279801324503,
+                "y": 383.89900662251654
+            }
+        },
+        "Level-03.tmx": {
+            "scale": 0.86,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 528.4883720930233,
+                "y": 183.72093023255815
             }
         },
         "Pixel Adventure.tsx": {
@@ -42,14 +51,13 @@
     "map.tileWidth": 16,
     "map.width": 40,
     "openFiles": [
-        "Pixel Adventure.tsx",
-        "Level-01.tmx"
     ],
-    "project": "untitled.tiled-project",
-    "property.type": "float",
+    "project": "game.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
-        "Level-01.tmx",
+        "Level-03.tmx",
         "Level-02.tmx",
+        "Level-01.tmx",
         "Pixel_Adventure.tsx",
         "Pixel Adventure.tsx"
     ],

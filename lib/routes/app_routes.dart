@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flame/game.dart';
-import 'package:portfolio/globals/globals.dart';
-
-import '../pages/add_blog_page.dart';
-import '../pages/blog_page.dart';
-import '../pages/home_page.dart';
-import '../pages/resume_page.dart';
+import 'package:portfolio/pages/add_blog_page.dart';
+import 'package:portfolio/pages/blog_page.dart';
+import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/pages/resume_page.dart';
+import 'package:portfolio/routes/game_routes.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -21,6 +19,6 @@ class AppRoutes {
     resume: (_) => const ResumePage(),
     blogAdd: (_) => const BlogAddScreen(),
     messages: (_) => const Placeholder(),
-    game: (_) => GameWidget(game: Global.game!),
+    game: (_) => const GameRoute(),
   };
 }

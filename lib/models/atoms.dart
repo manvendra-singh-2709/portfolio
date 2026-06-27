@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/services.dart';
-import '../utils/constants.dart';
+import 'package:portfolio/utils/constants.dart';
 
 class Atom {
   final String species;

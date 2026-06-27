@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../sections/about_section.dart';
-import '../sections/contact_section.dart';
-import '../sections/footer.dart';
-import '../sections/hero_section.dart';
-import '../sections/navbar.dart';
-import '../sections/projects_section.dart';
-import '../sections/skills_section.dart';
-import '../widgets/glass_container.dart';
+import 'package:portfolio/sections/about_section.dart';
+import 'package:portfolio/sections/contact_section.dart';
+import 'package:portfolio/sections/footer.dart';
+import 'package:portfolio/sections/hero_section.dart';
+import 'package:portfolio/sections/navbar.dart';
+import 'package:portfolio/sections/projects_section.dart';
+import 'package:portfolio/sections/skills_section.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

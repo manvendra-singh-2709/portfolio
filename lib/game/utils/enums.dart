@@ -38,10 +38,47 @@ enum CheckpointState {
   final bool loop;
 }
 
+enum FanState {
+  on(name: 'On (24x8)', frames: 4, loop: true),
+  off(name: 'Off', frames: 1, loop: false);
+
+  const FanState({required this.name, required this.frames, required this.loop});
+
+  final String name;
+  final int frames;
+  final bool loop;
+}
+
+enum SawState {
+  on(name: 'On (38x38)', frames: 8, loop: true),
+  off(name: 'Off', frames: 1, loop: false);
+
+  const SawState({required this.name, required this.frames, required this.loop});
+
+  final String name;
+  final int frames;
+  final bool loop;
+}
+
 enum Layers {
-  spawnPoints('Spawnpoints');
+  spawnPoints('Spawnpoints'),
+  background('Background'),
+  collisions('Collisions');
 
   const Layers(this.name);
+
+  final String name;
+}
+
+enum SpawnPoints {
+  player('Player'),
+  saw('Saw'),
+  fruit('Fruit'),
+  fan('Fan'),
+  checkpoint('Checkpoint'),
+  spike('Spike');
+
+  const SpawnPoints(this.name);
 
   final String name;
 }

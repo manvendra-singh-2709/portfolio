@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../data/api_caller.dart';
-import '../globals/globals.dart';
-import '../models/blog.dart';
-import '../widgets/glass_container.dart';
+import 'package:portfolio/data/api_caller.dart';
+import 'package:portfolio/globals/globals.dart';
+import 'package:portfolio/models/blog.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class BlogPage extends StatefulWidget {
   const BlogPage({super.key});

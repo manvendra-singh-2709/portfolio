@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import '../utils/constants.dart';
-import '../utils/sizes.dart';
-import '../utils/helpers.dart';
+import 'package:portfolio/utils/constants.dart';
+import 'package:portfolio/utils/helpers.dart';
+import 'package:portfolio/utils/sizes.dart';
 
 class Footer extends StatefulWidget {
   const Footer({super.key});

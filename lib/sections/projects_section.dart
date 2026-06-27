@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../data/api_caller.dart';
-import '../globals/globals.dart';
-import '../sections/current_work.dart';
-import '../utils/extensions.dart';
-import '../widgets/glass_container.dart';
-import '../models/project.dart';
-
+import 'package:portfolio/data/api_caller.dart';
+import 'package:portfolio/globals/globals.dart';
+import 'package:portfolio/models/project.dart';
+import 'package:portfolio/sections/current_work.dart';
+import 'package:portfolio/utils/extensions.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});
 

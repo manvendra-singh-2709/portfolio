@@ -2,9 +2,13 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:portfolio/game/pixel_adventure.dart';
+import 'package:portfolio/game/components/items/game_entity.dart';
+import 'package:portfolio/game/utils/enums.dart';
 
-class Saw extends SpriteAnimationComponent with HasGameReference<PixelAdventure> {
+class Saw extends GameEntity<SawState> {
+  late final SpriteAnimation onAnimation;
+  late final SpriteAnimation offAnimation;
+
   static final double sawSpeed = 0.03;
   static final double moveSpeed = 50;
   static final double tileSize = 16;
@@ -13,22 +17,18 @@ class Saw extends SpriteAnimationComponent with HasGameReference<PixelAdventure>
   double rangeNeg = 0;
   double rangePos = 0;
 
+  bool on = true;
+
   final bool isVertical;
   final double offNeg;
   final double offPos;
 
-  Saw({
-    super.position,
-    super.size,
-    required this.isVertical,
-    required this.offNeg,
-    required this.offPos,
-  });
+  Saw({super.position, super.size, required this.isVertical, required this.offNeg, required this.offPos});
 
   @override
   FutureOr<void> onLoad() {
     priority = -1;
-
+    _loadAllAnimations();
     add(CircleHitbox());
 
     if (isVertical) {
@@ -38,11 +38,6 @@ class Saw extends SpriteAnimationComponent with HasGameReference<PixelAdventure>
       rangeNeg = position.x - offNeg * tileSize;
       rangePos = position.x + offNeg * tileSize;
     }
-
-    animation = SpriteAnimation.fromFrameData(
-      game.images.fromCache('Traps/Saw/On (38x38).png'),
-      SpriteAnimationData.sequenced(amount: 8, stepTime: sawSpeed, textureSize: Vector2.all(38)),
-    );
     return super.onLoad();
   }
 
@@ -72,5 +67,26 @@ class Saw extends SpriteAnimationComponent with HasGameReference<PixelAdventure>
       moveDirection = 1;
     }
     position.x += moveDirection * moveSpeed * dt;
+  }
+
+  SpriteAnimation _spriteAnimation({required SawState sawState}) {
+    return SpriteAnimation.fromFrameData(
+      game.images.fromCache('Traps/Saw/${sawState.name}.png'),
+      SpriteAnimationData.sequenced(
+        amount: sawState.frames,
+        stepTime: sawSpeed,
+        textureSize: Vector2.all(38),
+        loop: sawState.loop,
+      ),
+    );
+  }
+
+  void _loadAllAnimations() {
+    onAnimation = _spriteAnimation(sawState: SawState.on);
+    offAnimation = _spriteAnimation(sawState: SawState.off);
+
+    animations = {SawState.on: onAnimation, SawState.off: offAnimation};
+
+    current = on ? SawState.on : SawState.off;
   }
 }

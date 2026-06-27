@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/constants.dart';
+import 'package:portfolio/utils/constants.dart';
 
 class HeroSection extends StatefulWidget {
   const HeroSection({super.key});

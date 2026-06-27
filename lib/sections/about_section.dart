@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/glass_container.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});

@@ -1,15 +1,14 @@
 import 'dart:ui';
 
-import 'package:flame/flame.dart';
+import 'package:flame/flame.dart'; 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:portfolio/globals/globals.dart';
+import 'package:portfolio/models/atoms.dart';
+import 'package:portfolio/pages/not_found_page.dart';
+import 'package:portfolio/routes/app_routes.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'globals/globals.dart';
-import 'models/atoms.dart';
-import 'pages/not_found_page.dart';
-import 'routes/app_routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.game,
       routes: AppRoutes.routes,
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(settings: settings, builder: (context) => const NotFoundPage());

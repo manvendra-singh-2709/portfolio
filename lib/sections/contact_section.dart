@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../data/api_caller.dart';
-import '../models/message.dart';
-import '../widgets/glass_container.dart';
+import 'package:portfolio/data/api_caller.dart';
+import 'package:portfolio/models/message.dart';
+import 'package:portfolio/widgets/glass_container.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});

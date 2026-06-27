@@ -15,6 +15,7 @@ class Global {
   static PixelAdventure? game;
   static String imagesPrefix = 'assets/game/images/';
   static double tileSize = 64;
+  static int numLevels = 3;
 
   Global() {
     log("Global Invoked");
