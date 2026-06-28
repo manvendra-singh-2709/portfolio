@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
-import 'package:portfolio/game/components/items/sprite_entity.dart';
+import 'package:portfolio/game/components/items/abstracts/sprite_entity.dart';
 
 class Spike extends SpriteEntity {
   static const double moveDistance = 16;

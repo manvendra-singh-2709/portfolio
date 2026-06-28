@@ -4,7 +4,7 @@ class CustomHitbox {
   final double width;
   final double height;
 
-  CustomHitbox({
+  const CustomHitbox({
     required this.offsetX,
     required this.offsetY,
     required this.width,

@@ -2,15 +2,14 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:portfolio/game/components/items/game_entity.dart';
+import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
 import 'package:portfolio/game/utils/enums.dart';
 
-class Fan extends GameEntity<FanState>{
+class Fan extends GameEntity<FanState> {
   late final SpriteAnimation onAnimation;
   late final SpriteAnimation offAnimation;
 
-  final double stepTime = 0.05;
   bool on;
   bool canToggle = true;
 
@@ -34,15 +33,15 @@ class Fan extends GameEntity<FanState>{
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+  Future<void> onCollision(Set<Vector2> intersectionPoints, PositionComponent other) async {
     if (!canToggle) return;
 
     canToggle = false;
 
+    await Future.delayed(const Duration(milliseconds: 800), () => canToggle = true);
+
     on = !on;
     current = on ? FanState.on : FanState.off;
-
-    Future.delayed(const Duration(milliseconds: 300), () => canToggle = true);
 
     super.onCollision(intersectionPoints, other);
   }

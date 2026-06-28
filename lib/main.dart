@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flame/flame.dart'; 
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';

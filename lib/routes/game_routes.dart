@@ -1,22 +1,53 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:pixel_ui/pixel_ui.dart';
 import 'package:portfolio/game/pixel_adventure.dart';
+import 'package:portfolio/game/utils/game_main_menu.dart';
 import 'package:portfolio/globals/globals.dart';
 
-class GameRoute extends StatelessWidget {
+class GameRoute extends StatefulWidget {
   const GameRoute({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final PixelAdventure game = Global.game ?? PixelAdventure();
+  State<GameRoute> createState() => _GameRouteState();
+}
 
+class _GameRouteState extends State<GameRoute> {
+  late final PixelAdventure game;
+  final FocusNode gameFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    game = Global.game ?? PixelAdventure();
+    Global.game = game;
+  }
+
+  @override
+  void dispose() {
+    gameFocusNode.dispose();
+    super.dispose();
+  }
+
+  void focusGame() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    Future<void>.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        gameFocusNode.requestFocus();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return GameWidget<PixelAdventure>(
       game: game,
+      focusNode: gameFocusNode,
+      autofocus: true,
       overlayBuilderMap: {
         'mainMenu': (context, game) {
-          return Center(
-            child: ElevatedButton(onPressed: game.startGame, child: const Text('PLAY')),
-          );
+          return GameMainMenu(game: game, onPlayPressed: focusGame);
         },
         'levelHud': (context, game) {
           return Positioned(
@@ -53,13 +84,10 @@ class GameRoute extends StatelessWidget {
 
                     return Text(
                       text,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style: PixelText.mulmaru(
                         fontSize: 24,
-                        fontFamily: 'monospace',
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.bold,
-                      ),
+                        color: Colors.white,
+                      ).copyWith(decoration: TextDecoration.none, decorationColor: Colors.transparent),
                     );
                   },
                 ),

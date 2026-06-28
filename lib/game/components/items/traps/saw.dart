@@ -2,20 +2,21 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:portfolio/game/components/items/game_entity.dart';
+import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 import 'package:portfolio/game/utils/enums.dart';
 
 class Saw extends GameEntity<SawState> {
   late final SpriteAnimation onAnimation;
   late final SpriteAnimation offAnimation;
 
+  @override
+  double get moveSpeed => 50;
+  
   static final double sawSpeed = 0.03;
-  static final double moveSpeed = 50;
-  static final double tileSize = 16;
 
-  double moveDirection = 1;
   double rangeNeg = 0;
-  double rangePos = 0;
+  double rangePos = 0; 
+  double moveDirection = 1;
 
   bool on = true;
 

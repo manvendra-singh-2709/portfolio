@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
-import 'package:portfolio/game/components/items/sprite_entity.dart';
+import 'package:portfolio/game/components/items/abstracts/sprite_entity.dart';
 import 'package:portfolio/game/components/levels/level.dart';
+import 'package:portfolio/game/utils/enums.dart';
+import 'package:portfolio/globals/globals.dart';
 
 class Fruit extends SpriteEntity {
   final String fruit;
@@ -36,6 +39,8 @@ class Fruit extends SpriteEntity {
 
   void collisionWithPlayer() {
     if (!_collected) {
+      _collected = true;
+      if (Global.playSound) FlameAudio.play(Audio.collect.name, volume: Global.soundVoulme);
       animation = SpriteAnimation.fromFrameData(
         game.images.fromCache('Items/Fruits/Collected.png'),
         SpriteAnimationData.sequenced(
@@ -45,7 +50,6 @@ class Fruit extends SpriteEntity {
           loop: false,
         ),
       );
-      _collected = true;
       level.fruitCollected();
     }
     Future.delayed(const Duration(microseconds: 400), () => removeFromParent());

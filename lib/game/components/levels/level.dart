@@ -2,12 +2,13 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 import 'package:portfolio/game/components/items/checkpoint.dart';
-import 'package:portfolio/game/components/items/fan.dart';
+import 'package:portfolio/game/components/items/enemy/chicken.dart';
+import 'package:portfolio/game/components/items/traps/fan.dart';
 import 'package:portfolio/game/components/items/fruit.dart';
 import 'package:portfolio/game/components/items/player.dart';
 import 'package:portfolio/game/components/collisions/blocks.dart';
-import 'package:portfolio/game/components/items/saw.dart';
-import 'package:portfolio/game/components/items/spike.dart';
+import 'package:portfolio/game/components/items/traps/saw.dart';
+import 'package:portfolio/game/components/items/traps/spike.dart';
 import 'package:portfolio/game/components/levels/background_tile.dart';
 import 'package:portfolio/game/pixel_adventure.dart';
 import 'package:portfolio/game/utils/enums.dart';
@@ -120,7 +121,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
               on: spawnPoint.properties.getProperty('on')!.value as bool,
             ),
           );
-          break ;
+          break;
 
         case SpawnPoints.spike:
           add(
@@ -134,6 +135,20 @@ class Level extends World with HasGameReference<PixelAdventure> {
         case SpawnPoints.checkpoint:
           add(
             Checkpoint(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            ),
+          );
+          break;
+
+        case SpawnPoints.chicken:
+          add(
+            Chicken(
+              offNeg: spawnPoint.properties.getProperty('offNeg')!.value as double,
+              offPos: spawnPoint.properties.getProperty('offPos')!.value as double,
+              shouldPatrol: spawnPoint.properties.getProperty('patrol')!.value as bool,
+              undead: spawnPoint.properties.getProperty('undead')!.value as bool,
+              deadDamage: spawnPoint.properties.getProperty('deadDamage')!.value as bool,
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
             ),

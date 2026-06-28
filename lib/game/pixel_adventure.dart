@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:portfolio/game/components/items/player.dart';
 import 'package:portfolio/game/components/levels/level.dart';
+import 'package:portfolio/game/services/game_api_caller.dart';
 import 'package:portfolio/game/utils/enums.dart';
 import 'package:portfolio/globals/globals.dart';
 
@@ -18,11 +20,11 @@ class PixelAdventure extends FlameGame
   Level? currentLevelComponent;
 
   Player player = Player(character: Actor.maskDude);
+  Actor selectedActor = Actor.maskDude;
 
   bool hasStarted = false;
   bool timerStarted = false;
   bool timerStopped = false;
-  bool showControls = true;
   bool levelTimerRunning = false;
 
   List<String> levelNames = List.generate(Global.numLevels, (i) => '${i + 1}'.padLeft(2, '0'));
@@ -48,6 +50,15 @@ class PixelAdventure extends FlameGame
     images.prefix = Global.imagesPrefix;
     await images.loadAllImages();
 
+    FlameAudio.audioCache.prefix = Global.audioPrefix;
+    await FlameAudio.audioCache.loadAll(<String>[
+      Audio.jump.name,
+      Audio.hit.name,
+      Audio.collect.name,
+      Audio.disappear.name,
+      Audio.jumpOnEnemy.name,
+    ]);
+
     overlays.add('mainMenu');
   }
 
@@ -55,6 +66,8 @@ class PixelAdventure extends FlameGame
     hasStarted = true;
     currentLevel = 1;
     levelNotifier.value = currentLevel;
+
+    player = Player(character: selectedActor);
 
     overlays.remove('mainMenu');
     overlays.add('levelHud');
@@ -89,10 +102,32 @@ class PixelAdventure extends FlameGame
     timerStopped = true;
   }
 
-  void completeLevel() {
+  bool isBetterTime(String current, String previous) {
+  Duration parseTime(String value) {
+    final List<String> parts = value.split(':');
+
+    return Duration(
+      minutes: int.parse(parts[0]),
+      seconds: int.parse(parts[1]),
+    );
+  }
+
+  return parseTime(current) < parseTime(previous);
+}
+  
+  void completeLevel() async {
     finishLevelTimer();
 
     completedLevelTimeNotifier.value = levelTimeNotifier.value;
+
+    final String level = currentLevel.toString().padLeft(2, '0');
+    final String time = formatLevelTime(levelTimeNotifier.value);
+
+    final String? previousTime = Global.levelData[level];
+
+if (previousTime == null || isBetterTime(time, previousTime)) {
+  await GameApiCaller.updateLevelTime(level: level, time: time);
+}
 
     overlays.remove('levelHud');
 
@@ -102,6 +137,14 @@ class PixelAdventure extends FlameGame
       hasStarted = false;
       overlays.add('gameOver');
     }
+  }
+
+  String formatLevelTime(double time) {
+    final int seconds = time.floor();
+    final int minutes = seconds ~/ 60;
+    final int remSeconds = seconds % 60;
+
+    return '${minutes.toString().padLeft(2, '0')}:${remSeconds.toString().padLeft(2, '0')}';
   }
 
   Future<void> _loadLevel() async {
@@ -127,7 +170,7 @@ class PixelAdventure extends FlameGame
 
     await cam.loaded;
 
-    if (showControls) {
+    if (Global.showJoystick) {
       addJoystick();
     }
   }
@@ -138,7 +181,7 @@ class PixelAdventure extends FlameGame
       levelTimeNotifier.value += dt;
     }
 
-    if (hasStarted && showControls) {
+    if (hasStarted && Global.showJoystick) {
       updateJoystick();
     }
 

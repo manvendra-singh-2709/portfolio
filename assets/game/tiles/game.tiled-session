@@ -9,15 +9,15 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 319.7326649958229,
-                "y": 180.00556947925372
+                "y": 183.92648287385134
             }
         },
         "Level-02.tmx": {
-            "scale": 1.4027343749999999,
+            "scale": 1.4,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.7326649958229,
-                "y": 184.28292954608747
+                "x": 319.64285714285717,
+                "y": 183.57142857142856
             }
         },
         "Pixel_Adventure.tsx": {
@@ -29,6 +29,7 @@
         "Level-02.tmx"
     ],
     "project": "game.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
         "Level-02.tmx",
         "Level-01.tmx"

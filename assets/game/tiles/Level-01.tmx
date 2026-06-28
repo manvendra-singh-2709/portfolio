@@ -22,9 +22,9 @@
 24,24,24,113,41,41,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,41,41,42,7,8,9,111,24,24,24,
 24,24,24,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,30,31,111,24,24,24,
 24,24,24,113,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,30,31,111,24,24,24,
-24,24,24,113,7,8,8,8,8,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,8,8,8,9,29,30,31,111,24,24,24,
-24,24,24,113,29,30,30,30,30,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,30,30,30,31,29,30,31,111,24,24,24,
-24,24,24,113,51,52,52,52,52,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,52,52,52,53,51,52,53,111,24,24,24,
+24,24,24,113,7,8,8,8,8,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,8,8,8,8,9,29,30,31,111,24,24,24,
+24,24,24,113,29,30,30,30,30,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,30,30,30,30,31,29,30,31,111,24,24,24,
+24,24,24,113,51,52,52,52,52,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,51,52,52,52,52,53,51,52,53,111,24,24,24,
 24,24,24,114,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,115,24,24,24,
 24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,
 24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,
@@ -38,7 +38,7 @@
   <object id="22" x="48" y="64" width="16" height="256"/>
   <object id="23" x="64" y="240" width="16" height="16"/>
   <object id="24" x="64" y="256" width="96" height="48"/>
-  <object id="25" x="448" y="256" width="80" height="48"/>
+  <object id="25" x="432" y="256" width="96" height="48"/>
   <object id="35" type="Platform" x="464" y="208" width="64" height="16"/>
   <object id="37" type="Platform" x="464" y="160" width="64" height="16"/>
   <object id="40" type="Platform" x="64" y="208" width="48" height="16"/>
@@ -49,34 +49,15 @@
   <object id="44" name="Cherries" type="Fruit" x="80" y="176" width="32" height="32"/>
   <object id="54" name="Pineapple" type="Fruit" x="480" y="128" width="32" height="32"/>
   <object id="55" name="Strawberry" type="Fruit" x="480" y="176" width="32" height="32"/>
-  <object id="61" type="Spike" x="208" y="288" width="16" height="16">
+  <object id="61" name="Chicken" type="Chicken" x="336" y="272" width="32" height="32">
    <properties>
-    <property name="isVertical" type="bool" value="false"/>
-    <property name="offNeg" type="float" value="8"/>
-    <property name="offPos" type="float" value="7"/>
+    <property name="deadDamage" type="bool" value="false"/>
+    <property name="offNeg" type="float" value="11"/>
+    <property name="offPos" type="float" value="6"/>
+    <property name="patrol" type="bool" value="false"/>
+    <property name="undead" type="bool" value="false"/>
    </properties>
   </object>
   <object id="60" type="Checkpoint" x="512" y="144" width="64" height="64"/>
-  <object id="62" type="Spike" x="272" y="288" width="16" height="16">
-   <properties>
-    <property name="isVertical" type="bool" value="false"/>
-    <property name="offNeg" type="float" value="8"/>
-    <property name="offPos" type="float" value="7"/>
-   </properties>
-  </object>
-  <object id="63" type="Spike" x="336" y="288" width="16" height="16">
-   <properties>
-    <property name="isVertical" type="bool" value="false"/>
-    <property name="offNeg" type="float" value="8"/>
-    <property name="offPos" type="float" value="7"/>
-   </properties>
-  </object>
-  <object id="64" type="Spike" x="400" y="288" width="15" height="16">
-   <properties>
-    <property name="isVertical" type="bool" value="false"/>
-    <property name="offNeg" type="float" value="8"/>
-    <property name="offPos" type="float" value="7"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

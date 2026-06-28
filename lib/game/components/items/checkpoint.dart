@@ -3,17 +3,14 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 import 'package:portfolio/game/components/items/player.dart';
-import 'package:portfolio/game/pixel_adventure.dart';
 import 'package:portfolio/game/utils/enums.dart';
 
-class Checkpoint extends SpriteAnimationGroupComponent
-    with HasGameReference<PixelAdventure>, CollisionCallbacks {
+class Checkpoint extends GameEntity<CheckpointState> {
   late final SpriteAnimation noFlagAnimation;
   late final SpriteAnimation flagOutAnimation;
   late final SpriteAnimation flagIdleAnimation;
-
-  final double stepTime = 0.05;
 
   bool reachedCheckpoint = false;
 

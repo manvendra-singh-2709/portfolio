@@ -3,18 +3,21 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame_audio/flame_audio.dart' hide PlayerState;
 import 'package:flutter/services.dart';
+import 'package:portfolio/game/components/items/abstracts/enemy.dart';
 import 'package:portfolio/game/components/items/checkpoint.dart';
-import 'package:portfolio/game/components/items/fan.dart';
+import 'package:portfolio/game/components/items/traps/fan.dart';
 import 'package:portfolio/game/components/items/fruit.dart';
-import 'package:portfolio/game/components/items/game_entity.dart';
+import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
 import 'package:portfolio/game/components/collisions/blocks.dart';
-import 'package:portfolio/game/components/items/saw.dart';
-import 'package:portfolio/game/components/items/spike.dart';
+import 'package:portfolio/game/components/items/traps/saw.dart';
+import 'package:portfolio/game/components/items/traps/spike.dart';
 import 'package:portfolio/game/components/levels/level.dart';
 import 'package:portfolio/game/utils/enums.dart';
 import 'package:portfolio/game/utils/utils.dart';
+import 'package:portfolio/globals/globals.dart';
 
 class Player extends GameEntity<PlayerState> {
   late final SpriteAnimation hitAnimation;
@@ -26,18 +29,6 @@ class Player extends GameEntity<PlayerState> {
   late final SpriteAnimation appearingAnimation;
   late final SpriteAnimation doubleJumpAnimation;
   late final SpriteAnimation disappearingAnimation;
-
-  final double stepTime = 0.05;
-  final double _gravity = 9.8;
-  final double _jumpForce = 250;
-  final double _terminalVelocity = 300;
-
-  int lives = 5;
-
-  double horizontalMovement = 0;
-  double keyboardHorizontalMovement = 0;
-  double joystickHorizontalMovement = 0;
-  double moveSpeed = 100;
 
   bool gotHit = false;
   bool hasJumped = false;
@@ -125,6 +116,10 @@ class Player extends GameEntity<PlayerState> {
       _respawn();
     }
 
+    if (other is Enemy) {
+      other.collisionWithPlayer();
+    }
+
     if (other is Checkpoint) {
       checkpointPosition = position.clone();
 
@@ -154,8 +149,6 @@ class Player extends GameEntity<PlayerState> {
     horizontalMovement = 0;
     keyboardHorizontalMovement = 0;
     joystickHorizontalMovement = 0;
-
-    lives = 5;
 
     scale.x = 1;
 
@@ -215,7 +208,7 @@ class Player extends GameEntity<PlayerState> {
     }
 
     // To avoid jumping while falling
-    // if (velocity.y > _gravity) isOnGround = false;
+    // if (velocity.y > gravity) isOnGround = false;
 
     horizontalMovement = keyboardHorizontalMovement + joystickHorizontalMovement;
     horizontalMovement = horizontalMovement.clamp(-1, 1);
@@ -241,7 +234,7 @@ class Player extends GameEntity<PlayerState> {
     if (velocity.x != 0) playerState = PlayerState.running;
 
     // Check if falling
-    if (velocity.y > _gravity) playerState = PlayerState.fall;
+    if (velocity.y > gravity) playerState = PlayerState.fall;
 
     // Check if jumping
     if (velocity.y < 0) playerState = PlayerState.jump;
@@ -269,8 +262,8 @@ class Player extends GameEntity<PlayerState> {
   }
 
   void _applyGravity(double dt) {
-    velocity.y += _gravity * dt * 60;
-    velocity.y = velocity.y.clamp(-_jumpForce, _terminalVelocity);
+    velocity.y += gravity * dt * 60;
+    velocity.y = velocity.y.clamp(-jumpForce, terminalVelocity);
     position.y += velocity.y * dt;
   }
 
@@ -303,14 +296,20 @@ class Player extends GameEntity<PlayerState> {
   }
 
   void _playerJump(double dt) {
-    velocity.y = -_jumpForce;
+    if (Global.playSound) FlameAudio.play(Audio.jump.name, volume: Global.soundVoulme);
+    velocity.y = -jumpForce;
     position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
   }
 
   void _respawn() {
+    if (gotHit) return;
     gotHit = true;
+    velocity = Vector2.zero();
+    hasJumped = false;
+    isOnGround = false;
+    if (Global.playSound) FlameAudio.play(Audio.hit.name, volume: Global.soundVoulme);
     current = PlayerState.hit;
     final SpriteAnimationTicker hitAnimation = animationTickers![PlayerState.hit]!;
     hitAnimation.completed.whenComplete(() {
@@ -329,6 +328,7 @@ class Player extends GameEntity<PlayerState> {
   }
 
   void _reachedCheckpoint() {
+    if (Global.playSound) FlameAudio.play(Audio.disappear.name, volume: Global.soundVoulme);
     reachedCheckpoint = true;
 
     if (scale.x > 0) {
@@ -350,5 +350,9 @@ class Player extends GameEntity<PlayerState> {
       removeFromParent();
       game.completeLevel();
     });
+  }
+
+  void collisionWithEnemy() {
+    _respawn();
   }
 }
