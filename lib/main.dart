@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFF0F172A),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.game,
+      initialRoute: AppRoutes.home,
       routes: AppRoutes.routes,
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(settings: settings, builder: (context) => const NotFoundPage());

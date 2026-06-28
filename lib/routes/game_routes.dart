@@ -117,6 +117,14 @@ class _GameRouteState extends State<GameRoute> {
                   },
                   child: const Text('PLAY AGAIN'),
                 ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    game.overlays.remove('gameOver');
+                    game.exitToMainMenu();
+                  },
+                  child: const Text('MAIN MENU'),
+                ),
               ],
             ),
           );
