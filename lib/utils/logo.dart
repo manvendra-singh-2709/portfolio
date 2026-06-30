@@ -57,15 +57,9 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
       end: widget.endAngle,
     ).animate(CurvedAnimation(parent: _swingController, curve: Curves.easeInOut));
 
-    _sequenceController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 2200),
-    );
+    _sequenceController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2200));
 
-    _springController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 700),
-    );
+    _springController = AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
   }
 
   void _resetSwingToNeutral() {
@@ -205,9 +199,7 @@ class _LogoState extends State<Logo> with TickerProviderStateMixin {
             builder: (context, child) {
               double shakeAngle = 0;
 
-              if (_isAnimating &&
-                  _sequenceController.value >= 0.25 &&
-                  _sequenceController.value <= 0.5) {
+              if (_isAnimating && _sequenceController.value >= 0.25 && _sequenceController.value <= 0.5) {
                 shakeAngle = sin(_sequenceController.value * 100) * _shakeAnim.value;
               }
 

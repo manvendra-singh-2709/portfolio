@@ -11,11 +11,11 @@ class Saw extends GameEntity<SawState> {
 
   @override
   double get moveSpeed => 50;
-  
+
   static final double sawSpeed = 0.03;
 
   double rangeNeg = 0;
-  double rangePos = 0; 
+  double rangePos = 0;
   double moveDirection = 1;
 
   bool on = true;

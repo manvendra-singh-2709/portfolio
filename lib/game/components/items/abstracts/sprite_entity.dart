@@ -4,9 +4,5 @@ import 'package:portfolio/game/pixel_adventure.dart';
 
 abstract class SpriteEntity extends SpriteAnimationComponent
     with HasGameReference<PixelAdventure>, CollisionCallbacks {
-  SpriteEntity({
-    super.position,
-    super.size,
-    super.priority,
-  });
+  SpriteEntity({super.position, super.size, super.priority});
 }

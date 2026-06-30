@@ -5,6 +5,7 @@ import 'package:portfolio/models/project.dart';
 import 'package:portfolio/sections/current_work.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/widgets/glass_container.dart';
+
 class ProjectsSection extends StatefulWidget {
   const ProjectsSection({super.key});
 
@@ -36,10 +37,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
       padding: const EdgeInsets.symmetric(vertical: 50),
       child: Column(
         children: [
-          const Text(
-            'Work & Innovations',
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          ),
+          const Text('Work & Innovations', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           const SizedBox(height: 30),
 
           Container(
@@ -54,10 +52,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
               indicatorColor: Colors.transparent,
               dividerColor: Colors.transparent,
               labelPadding: EdgeInsets.zero,
-              tabs: [
-                _buildGlassTab('Past Projects', 0, context),
-                _buildGlassTab('Current Work', 1, context),
-              ],
+              tabs: [_buildGlassTab('Past Projects', 0, context), _buildGlassTab('Current Work', 1, context)],
             ),
           ),
           const SizedBox(height: 30),
@@ -91,10 +86,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
                 child: Center(
                   child: Text(
                     label,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: context.insets.fontSizeTitles,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: context.insets.fontSizeTitles),
                   ),
                 ),
               )
@@ -112,8 +104,7 @@ class PersistentProjectsList extends StatefulWidget {
   State<PersistentProjectsList> createState() => _PersistentProjectsListState();
 }
 
-class _PersistentProjectsListState extends State<PersistentProjectsList>
-    with AutomaticKeepAliveClientMixin {
+class _PersistentProjectsListState extends State<PersistentProjectsList> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 

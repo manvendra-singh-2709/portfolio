@@ -15,10 +15,7 @@ class NotFoundPage extends StatelessWidget {
             child: Container(
               width: 300,
               height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.blue.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue.withValues(alpha: 0.2)),
             ),
           ),
           Positioned(
@@ -27,10 +24,7 @@ class NotFoundPage extends StatelessWidget {
             child: Container(
               width: 250,
               height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.purple.withValues(alpha: 0.2)),
             ),
           ),
 
@@ -72,11 +66,7 @@ class NotFoundPage extends StatelessWidget {
                     ),
                     child: const Text(
                       "BACK TO HOME",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
-                      ),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, letterSpacing: 1.2),
                     ),
                   ),
                 ),

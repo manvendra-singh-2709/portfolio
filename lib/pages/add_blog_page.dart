@@ -64,9 +64,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
               decoration: BoxDecoration(
                 color: const Color(0xCC1A1A1A),
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  color: isError ? Colors.redAccent.withValues(alpha: 0.5) : Colors.white10,
-                ),
+                border: Border.all(color: isError ? Colors.redAccent.withValues(alpha: 0.5) : Colors.white10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.4),
@@ -117,10 +115,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
             child: Container(
               width: 300,
               height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.blue.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue.withValues(alpha: 0.2)),
             ),
           ),
           Positioned(
@@ -129,10 +124,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
             child: Container(
               width: 250,
               height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.purple.withValues(alpha: 0.2)),
             ),
           ),
 
@@ -177,10 +169,7 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
         hintStyle: const TextStyle(color: Colors.white24),
         filled: true,
         fillColor: Colors.white.withValues(alpha: 0.05),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Colors.blueAccent),

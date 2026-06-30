@@ -25,13 +25,7 @@ class _HeroSectionState extends State<HeroSection> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: isHovered
-                    ? [
-                        BoxShadow(
-                          color: Colors.blue.withValues(alpha: 0.6),
-                          blurRadius: 30,
-                          spreadRadius: 10,
-                        ),
-                      ]
+                    ? [BoxShadow(color: Colors.blue.withValues(alpha: 0.6), blurRadius: 30, spreadRadius: 10)]
                     : [],
               ),
               child: const CircleAvatar(radius: 100, backgroundImage: AssetImage(Images.pf2)),

@@ -18,11 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isMenuOpen = false;
 
-  final Map<String, GlobalKey> _keys = {
-    'Home': GlobalKey(),
-    'Projects': GlobalKey(),
-    'Contact': GlobalKey(),
-  };
+  final Map<String, GlobalKey> _keys = {'Home': GlobalKey(), 'Projects': GlobalKey(), 'Contact': GlobalKey()};
 
   void _scrollToSection(String item) {
     final key = _keys[item];
@@ -46,10 +42,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: 300,
               height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.blue.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue.withValues(alpha: 0.2)),
             ),
           ),
           Positioned(
@@ -58,10 +51,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               width: 250,
               height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withValues(alpha: 0.2),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.purple.withValues(alpha: 0.2)),
             ),
           ),
 
@@ -82,8 +72,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          if (_isMenuOpen)
-            Positioned(top: 100, left: 20, right: 20, child: _buildMobileMenuOverlay()),
+          if (_isMenuOpen) Positioned(top: 100, left: 20, right: 20, child: _buildMobileMenuOverlay()),
         ],
       ),
     );

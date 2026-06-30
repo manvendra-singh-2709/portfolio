@@ -103,18 +103,15 @@ class PixelAdventure extends FlameGame
   }
 
   bool isBetterTime(String current, String previous) {
-  Duration parseTime(String value) {
-    final List<String> parts = value.split(':');
+    Duration parseTime(String value) {
+      final List<String> parts = value.split(':');
 
-    return Duration(
-      minutes: int.parse(parts[0]),
-      seconds: int.parse(parts[1]),
-    );
+      return Duration(minutes: int.parse(parts[0]), seconds: int.parse(parts[1]));
+    }
+
+    return parseTime(current) < parseTime(previous);
   }
 
-  return parseTime(current) < parseTime(previous);
-}
-  
   void completeLevel() async {
     finishLevelTimer();
 
@@ -125,9 +122,9 @@ class PixelAdventure extends FlameGame
 
     final String? previousTime = Global.levelData[level];
 
-if (previousTime == null || isBetterTime(time, previousTime)) {
-  await GameApiCaller.updateLevelTime(level: level, time: time);
-}
+    if (previousTime == null || isBetterTime(time, previousTime)) {
+      await GameApiCaller.updateLevelTime(level: level, time: time);
+    }
 
     overlays.remove('levelHud');
 

@@ -50,9 +50,7 @@ class _ContactSectionState extends State<ContactSection> {
               decoration: BoxDecoration(
                 color: const Color(0xCC1A1A1A),
                 borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  color: isError ? Colors.redAccent.withValues(alpha: 0.5) : Colors.white10,
-                ),
+                border: Border.all(color: isError ? Colors.redAccent.withValues(alpha: 0.5) : Colors.white10),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.4),
@@ -104,9 +102,7 @@ class _ContactSectionState extends State<ContactSection> {
       return;
     }
 
-    bool success = await ApiCaller.sendMessage(
-      Message(name: name, email: email, message: content, id: 0),
-    );
+    bool success = await ApiCaller.sendMessage(Message(name: name, email: email, message: content, id: 0));
 
     if (success) {
       _nameController.clear();
@@ -171,10 +167,7 @@ class _ContactSectionState extends State<ContactSection> {
         hintText: label,
         filled: true,
         fillColor: Colors.white.withValues(alpha: 0.05),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
         labelStyle: const TextStyle(color: Colors.white70),
       ),
     );

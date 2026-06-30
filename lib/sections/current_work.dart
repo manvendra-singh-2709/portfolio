@@ -13,8 +13,7 @@ class CurrentWorkSimulation extends StatefulWidget {
   State<CurrentWorkSimulation> createState() => _CurrentWorkSimulationState();
 }
 
-class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
-    with SingleTickerProviderStateMixin {
+class _CurrentWorkSimulationState extends State<CurrentWorkSimulation> with SingleTickerProviderStateMixin {
   final vmath.Vector3 _rotation = vmath.Vector3(10.97, -2.14, 7.0);
   final TextEditingController _frameController = TextEditingController();
 
@@ -90,9 +89,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
       return const Center(child: CircularProgressIndicator(color: Colors.white24));
     }
 
-    final atoms = _currentMovieFrames.isNotEmpty
-        ? _currentMovieFrames[_currentFrameIndex]
-        : <Atom>[];
+    final atoms = _currentMovieFrames.isNotEmpty ? _currentMovieFrames[_currentFrameIndex] : <Atom>[];
     final int maxFrame = _currentMovieFrames.length - 1;
 
     return Center(
@@ -239,9 +236,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.1)),
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent),
-                  ),
+                  focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent)),
                 ),
                 onSubmitted: (val) {
                   int? target = int.tryParse(val);
@@ -267,10 +262,7 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation>
 
   Widget _navButton(IconData icon, VoidCallback onPressed, {bool? forward, bool? nextFrame}) {
     return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white.withValues(alpha: 0.05),
-      ),
+      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white.withValues(alpha: 0.05)),
       child: IconButton(
         tooltip: forward == null
             ? (nextFrame == null ? null : (nextFrame ? "Next Frame" : "Previous Frame"))

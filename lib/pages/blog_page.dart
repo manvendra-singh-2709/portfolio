@@ -37,10 +37,7 @@ class _BlogPageState extends State<BlogPage> {
             child: Container(
               width: 300,
               height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.blue.withValues(alpha: 0.1),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue.withValues(alpha: 0.1)),
             ),
           ),
           Positioned(
@@ -49,10 +46,7 @@ class _BlogPageState extends State<BlogPage> {
             child: Container(
               width: 250,
               height: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.purple.withValues(alpha: 0.1),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.purple.withValues(alpha: 0.1)),
             ),
           ),
 
@@ -131,11 +125,7 @@ class _BlogPageState extends State<BlogPage> {
               Text(
                 blog.content,
                 textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.white.withValues(alpha: 0.8),
-                  fontSize: 16,
-                  height: 1.6,
-                ),
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 16, height: 1.6),
               ),
             ],
           ),

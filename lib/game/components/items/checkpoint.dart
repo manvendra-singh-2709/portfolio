@@ -20,11 +20,7 @@ class Checkpoint extends GameEntity<CheckpointState> {
   FutureOr<void> onLoad() {
     _loadAllAnimations();
     add(
-      RectangleHitbox(
-        position: Vector2(18, 18),
-        size: Vector2(12, 46),
-        collisionType: CollisionType.passive,
-      ),
+      RectangleHitbox(position: Vector2(18, 18), size: Vector2(12, 46), collisionType: CollisionType.passive),
     );
     return super.onLoad();
   }

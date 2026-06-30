@@ -182,8 +182,8 @@ class EnemyAnimationData {
   });
 }
 
-Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
-    <EnemyType, Map<EnemyState, EnemyAnimationData>>{
+Map<EnemyType, Map<EnemyState, EnemyAnimationData>>
+enemyAssets = <EnemyType, Map<EnemyState, EnemyAnimationData>>{
   EnemyType.angryPig: <EnemyState, EnemyAnimationData>{
     EnemyState.hit1: EnemyAnimationData(
       fileName: 'Hit 1 (36x30).png',
@@ -202,11 +202,7 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
       frames: 11,
       textureSize: Vector2(36, 30),
     ),
-    EnemyState.run: EnemyAnimationData(
-      fileName: 'Run (36x30).png',
-      frames: 12,
-      textureSize: Vector2(36, 30),
-    ),
+    EnemyState.run: EnemyAnimationData(fileName: 'Run (36x30).png', frames: 12, textureSize: Vector2(36, 30)),
     EnemyState.walk: EnemyAnimationData(
       fileName: 'Walk (36x30).png',
       frames: 16,
@@ -279,11 +275,7 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
   },
 
   EnemyType.bunny: <EnemyState, EnemyAnimationData>{
-    EnemyState.fall: EnemyAnimationData(
-      fileName: 'Fall.png',
-      frames: 1,
-      textureSize: Vector2(34, 44),
-    ),
+    EnemyState.fall: EnemyAnimationData(fileName: 'Fall.png', frames: 1, textureSize: Vector2(34, 44)),
     EnemyState.hit: EnemyAnimationData(
       fileName: 'Hit (34x44).png',
       frames: 5,
@@ -295,16 +287,8 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
       frames: 8,
       textureSize: Vector2(34, 44),
     ),
-    EnemyState.jump: EnemyAnimationData(
-      fileName: 'Jump.png',
-      frames: 1,
-      textureSize: Vector2(34, 44),
-    ),
-    EnemyState.run: EnemyAnimationData(
-      fileName: 'Run (34x44).png',
-      frames: 12,
-      textureSize: Vector2(34, 44),
-    ),
+    EnemyState.jump: EnemyAnimationData(fileName: 'Jump.png', frames: 1, textureSize: Vector2(34, 44)),
+    EnemyState.run: EnemyAnimationData(fileName: 'Run (34x44).png', frames: 12, textureSize: Vector2(34, 44)),
   },
 
   EnemyType.chameleon: <EnemyState, EnemyAnimationData>{
@@ -324,11 +308,7 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
       frames: 13,
       textureSize: Vector2(84, 38),
     ),
-    EnemyState.run: EnemyAnimationData(
-      fileName: 'Run (84x38).png',
-      frames: 8,
-      textureSize: Vector2(84, 38),
-    ),
+    EnemyState.run: EnemyAnimationData(fileName: 'Run (84x38).png', frames: 8, textureSize: Vector2(84, 38)),
   },
 
   EnemyType.chicken: <EnemyState, EnemyAnimationData>{
@@ -343,11 +323,7 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
       frames: 13,
       textureSize: Vector2(32, 34),
     ),
-    EnemyState.run: EnemyAnimationData(
-      fileName: 'Run (32x34).png',
-      frames: 14,
-      textureSize: Vector2(32, 34),
-    ),
+    EnemyState.run: EnemyAnimationData(fileName: 'Run (32x34).png', frames: 14, textureSize: Vector2(32, 34)),
   },
 
   EnemyType.duck: <EnemyState, EnemyAnimationData>{
@@ -431,10 +407,7 @@ Map<EnemyType, Map<EnemyState, EnemyAnimationData>> enemyAssets =
   },
 };
 
-EnemyAnimationData enemyAnimationData(
-  EnemyType type,
-  EnemyState state,
-) {
+EnemyAnimationData enemyAnimationData(EnemyType type, EnemyState state) {
   final EnemyAnimationData? data = enemyAssets[type]?[state];
 
   if (data == null) {
@@ -444,10 +417,7 @@ EnemyAnimationData enemyAnimationData(
   return data;
 }
 
-String enemyPath(
-  EnemyType type,
-  EnemyState state,
-) {
+String enemyPath(EnemyType type, EnemyState state) {
   final EnemyAnimationData data = enemyAnimationData(type, state);
 
   return 'Enemies/${type.folder}/${data.fileName}';

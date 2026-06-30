@@ -3,6 +3,8 @@ import 'dart:math' as math;
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 import 'package:portfolio/game/components/collisions/blocks.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
@@ -54,7 +56,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
   double visionFrontRange = Global.visionFrontRange;
   double visionBackRange = Global.visionBackRange;
 
-  Map<EnemyState, SpriteAnimation?> get animationMap => {};
+  Map<EnemyState, SpriteAnimation?> animationMap = {};
 
   double runSpeed = 60;
   double get patrolSpeed => runSpeed / 2;
@@ -64,6 +66,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     aiEnabled = false;
 
     Future<void>.delayed(const Duration(milliseconds: 800), () {
+      canDamagePlayer = true;
       aiEnabled = true;
     });
   }
@@ -293,8 +296,37 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     }
 
     animations = loadedAnimations;
+    animationMap = loadedAnimations;
     current = loadedAnimations.keys.first;
   }
 
-  void collisionWithPlayer() {}
+  void collisionWithPlayer() {
+    if (!canDamagePlayer || !isAlive) return;
+
+    if (player.velocity.y > 0 && player.y + player.height > y) {
+      player.hasJumped = true;
+      if (Global.playSound) FlameAudio.play(Audio.jumpOnEnemy.name, volume: Global.soundVoulme);
+      isAlive = false;
+      canDamagePlayer = false;
+      aiEnabled = false;
+
+      EnemyState hitState = animationMap.keys.elementAt(1);
+
+      current = hitState;
+
+      final SpriteAnimationTicker hitTicker = animationTickers![hitState]!;
+
+      hitTicker.reset();
+
+      hitTicker.completed.whenComplete(() {
+        hitTicker.reset();
+        removeFromParent();
+      });
+
+      return;
+    }
+
+    disableDamageTemporarily();
+    player.collisionWithEnemy();
+  }
 }

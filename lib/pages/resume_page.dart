@@ -21,10 +21,7 @@ class _ResumePageState extends State<ResumePage> {
             child: Container(
               width: 300,
               height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.blue.withValues(alpha: 0.05),
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.blue.withValues(alpha: 0.05)),
             ),
           ),
 
@@ -84,10 +81,7 @@ class _ResumePageState extends State<ResumePage> {
                             const Text("IIT Kanpur | 2025 - Present"),
                             const Text(
                               "Current GPA: 10/10",
-                              style: TextStyle(
-                                color: Color(0xFF4FACFE),
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(color: Color(0xFF4FACFE), fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -103,10 +97,7 @@ class _ResumePageState extends State<ResumePage> {
                             const Text("MNIT Jaipur | 2021 - 2025"),
                             const Text(
                               "GPA: 9.88/10",
-                              style: TextStyle(
-                                color: Color(0xFF4FACFE),
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(color: Color(0xFF4FACFE), fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -297,10 +288,7 @@ class _ResumePageState extends State<ResumePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ),
               Text(date, style: const TextStyle(color: Colors.white38, fontSize: 12)),
             ],
@@ -321,17 +309,10 @@ class _ResumePageState extends State<ResumePage> {
           const SizedBox(height: 5),
           Text(
             location,
-            style: const TextStyle(
-              color: Color(0xFF4FACFE),
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-            ),
+            style: const TextStyle(color: Color(0xFF4FACFE), fontSize: 13, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 12),
-          Text(
-            desc,
-            style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5),
-          ),
+          Text(desc, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5)),
         ],
       ),
     );
@@ -347,20 +328,14 @@ class _ResumePageState extends State<ResumePage> {
               Icon(icon, color: const Color(0xFF4FACFE), size: 20),
               const SizedBox(width: 10),
               Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                child: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ),
             ],
           ),
           const SizedBox(height: 4),
           Text(date, style: const TextStyle(color: Colors.white38, fontSize: 12)),
           const SizedBox(height: 12),
-          Text(
-            desc,
-            style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5),
-          ),
+          Text(desc, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14, height: 1.5)),
         ],
       ),
     );

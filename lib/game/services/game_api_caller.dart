@@ -1,4 +1,3 @@
-
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:portfolio/globals/globals.dart';
 
@@ -25,22 +24,15 @@ class GameApiCaller {
 
     final Map<String, dynamic> row = rows.first as Map<String, dynamic>;
 
-    final Map<String, dynamic> rawData =
-        (row['game_data'] as Map<String, dynamic>?) ?? <String, dynamic>{};
+    final Map<String, dynamic> rawData = (row['game_data'] as Map<String, dynamic>?) ?? <String, dynamic>{};
 
     Global.email = email;
     Global.levelData = rawData.map(
-      (String key, dynamic value) => MapEntry<String, String>(
-        key,
-        value.toString(),
-      ),
+      (String key, dynamic value) => MapEntry<String, String>(key, value.toString()),
     );
   }
 
-  static Future<void> updateLevelTime({
-    required String level,
-    required String time,
-  }) async {
+  static Future<void> updateLevelTime({required String level, required String time}) async {
     final String? email = Global.email;
 
     if (email == null) return;
@@ -49,9 +41,7 @@ class GameApiCaller {
 
     await _client
         .from('Pixel_Adventure')
-        .update(<String, dynamic>{
-          'game_data': Global.levelData,
-        })
+        .update(<String, dynamic>{'game_data': Global.levelData})
         .eq('email', email);
   }
 }
