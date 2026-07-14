@@ -22,9 +22,14 @@ abstract class GameEntity<T extends Enum> extends SpriteAnimationGroupComponent<
 
   late TiledObject spawnPoint;
 
-  GameEntity({super.position, super.size, super.priority, required this.spawnPoint});
+  GameEntity({super.position, super.size, super.priority, required this.spawnPoint}) {
+    position = Vector2(spawnPoint.x, spawnPoint.y);
+    size = Vector2(spawnPoint.width, spawnPoint.height);
+  }
 
   void setSpawnPoint(TiledObject tiledObject) {
     spawnPoint = tiledObject;
+    position = Vector2(spawnPoint.x, spawnPoint.y);
+    size = Vector2(spawnPoint.width, spawnPoint.height);
   }
 }

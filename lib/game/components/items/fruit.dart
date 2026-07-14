@@ -18,7 +18,7 @@ class Fruit extends SpriteEntity {
 
   final CustomHitbox hitbox = CustomHitbox(offsetX: 10, offsetY: 10, width: 12, height: 12);
 
-  Fruit({super.position, super.size, required this.fruit});
+  Fruit({super.position, super.size, required this.fruit, required super.spawnPoint});
 
   @override
   FutureOr<void> onLoad() {

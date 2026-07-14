@@ -97,11 +97,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
           break;
 
         case SpawnPoints.fruit:
-          final Fruit fruit = Fruit(
-            fruit: spawnPoint.name,
-            position: Vector2(spawnPoint.x, spawnPoint.y),
-            size: Vector2(spawnPoint.width, spawnPoint.height),
-          );
+          final Fruit fruit = Fruit(fruit: spawnPoint.name, spawnPoint: spawnPoint);
           fruit.level = this;
           totalFruits++;
           add(fruit);
@@ -132,22 +128,11 @@ class Level extends World with HasGameReference<PixelAdventure> {
           break;
 
         case SpawnPoints.spike:
-          add(
-            Spike(
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            ),
-          );
+          add(Spike(spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.checkpoint:
-          add(
-            Checkpoint(
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-              spawnPoint: spawnPoint,
-            ),
-          );
+          add(Checkpoint(spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.chicken:

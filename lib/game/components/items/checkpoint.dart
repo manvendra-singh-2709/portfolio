@@ -14,7 +14,7 @@ class Checkpoint extends GameEntity<CheckpointState> {
 
   bool reachedCheckpoint = false;
 
-  Checkpoint({super.position, super.size, required super.spawnPoint});
+  Checkpoint({required super.spawnPoint});
 
   @override
   FutureOr<void> onLoad() {

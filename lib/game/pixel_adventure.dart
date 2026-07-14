@@ -29,7 +29,7 @@ class PixelAdventure extends FlameGame
   bool levelTimerRunning = false;
 
   // List<String> levelNames = List.generate(Global.numLevels, (i) => '${i + 1}'.padLeft(2, '0'));
-  List<String> levelNames = List.generate(Global.numLevels, (i) => '${3}'.padLeft(2, '0'));
+  List<String> levelNames = List.generate(Global.numLevels, (i) => '${5}'.padLeft(2, '0'));
 
   String get levelText => 'Level ${levelNames[currentLevel - 1]}';
 

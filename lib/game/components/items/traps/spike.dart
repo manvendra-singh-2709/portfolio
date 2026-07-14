@@ -18,7 +18,7 @@ class Spike extends SpriteEntity {
 
   final CustomHitbox hitbox = CustomHitbox(offsetX: 0, offsetY: 8, width: 16, height: 8);
 
-  Spike({super.position, super.size});
+  Spike({super.position, super.size, required super.spawnPoint});
 
   @override
   FutureOr<void> onLoad() {
