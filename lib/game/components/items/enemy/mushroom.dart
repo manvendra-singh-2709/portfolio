@@ -10,9 +10,6 @@ class Mushroom extends SimpleEnemy<EnemyState> {
   static final SpriteAnimation? hitAnimation = null;
 
   Mushroom({
-    super.size,
-    super.position,
-    super.priority,
     required super.spawnPoint,
     super.enemyType = EnemyType.mushroom,
     super.hitbox = const CustomHitbox(offsetX: 6, offsetY: 6, width: 20, height: 22),

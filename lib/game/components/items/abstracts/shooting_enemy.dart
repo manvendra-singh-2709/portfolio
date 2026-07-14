@@ -5,13 +5,7 @@ import 'package:portfolio/game/utils/enums.dart';
 import 'package:portfolio/globals/globals.dart';
 
 class ShootingEnemy<T extends Enum> extends Enemy {
-  ShootingEnemy({
-    super.size,
-    super.position,
-    super.priority,
-    required super.hitbox,
-    required super.enemyType, required super.spawnPoint,
-  });
+  ShootingEnemy({required super.hitbox, required super.enemyType, required super.spawnPoint});
 
   @override
   bool canSeePlayer() {

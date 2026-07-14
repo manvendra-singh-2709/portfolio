@@ -136,43 +136,19 @@ class Level extends World with HasGameReference<PixelAdventure> {
           break;
 
         case SpawnPoints.chicken:
-          add(
-            Chicken(
-              spawnPoint: spawnPoint,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            ),
-          );
+          add(Chicken(spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.angryPig:
-          add(
-            AngryPig(
-              spawnPoint: spawnPoint,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            ),
-          );
+          add(AngryPig(spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.mushroom:
-          add(
-            Mushroom(
-              spawnPoint: spawnPoint,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            ),
-          );
+          add(Mushroom(spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.slime:
-          add(
-            Slime(
-              spawnPoint: spawnPoint,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            ),
-          );
+          add(Slime(spawnPoint: spawnPoint));
           break;
 
         case null:

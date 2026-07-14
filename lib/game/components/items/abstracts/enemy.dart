@@ -12,17 +12,9 @@ import 'package:portfolio/globals/globals.dart';
 import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 
 abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
-
   final EnemyType enemyType;
 
-  Enemy({
-    super.size,
-    super.position,
-    super.priority,
-    required super.spawnPoint,
-    required this.hitbox,
-    required this.enemyType,
-  }) {
+  Enemy({required super.spawnPoint, required this.hitbox, required this.enemyType}) {
     offNeg = spawnPoint.properties.getProperty('offNeg')!.value as double;
     offPos = spawnPoint.properties.getProperty('offPos')!.value as double;
     shouldPatrol = spawnPoint.properties.getProperty('patrol')!.value as bool;

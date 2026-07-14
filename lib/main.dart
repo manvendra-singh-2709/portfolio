@@ -11,7 +11,7 @@ import 'package:portfolio/routes/app_routes.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Flame.device.fullScreen();
 
