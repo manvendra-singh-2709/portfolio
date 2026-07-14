@@ -15,7 +15,7 @@ class Fan extends GameEntity<FanState> {
 
   final CustomHitbox hitbox = CustomHitbox(offsetX: 0, offsetY: 0, width: 24, height: 8);
 
-  Fan({super.position, super.size, required this.on});
+  Fan({super.position, super.size, required this.on, required super.spawnPoint});
 
   @override
   FutureOr<void> onLoad() {

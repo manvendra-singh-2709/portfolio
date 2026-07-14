@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/widgets.dart';
 import 'package:portfolio/game/components/items/player.dart';
 import 'package:portfolio/game/components/levels/level.dart';
@@ -19,7 +20,7 @@ class PixelAdventure extends FlameGame
 
   Level? currentLevelComponent;
 
-  Player player = Player(character: Actor.maskDude);
+  Player player = Player(character: Actor.maskDude, spawnPoint: TiledObject(id: 0));
   Actor selectedActor = Actor.maskDude;
 
   bool hasStarted = false;
@@ -27,7 +28,8 @@ class PixelAdventure extends FlameGame
   bool timerStopped = false;
   bool levelTimerRunning = false;
 
-  List<String> levelNames = List.generate(Global.numLevels, (i) => '${i + 1}'.padLeft(2, '0'));
+  // List<String> levelNames = List.generate(Global.numLevels, (i) => '${i + 1}'.padLeft(2, '0'));
+  List<String> levelNames = List.generate(Global.numLevels, (i) => '${3}'.padLeft(2, '0'));
 
   String get levelText => 'Level ${levelNames[currentLevel - 1]}';
 
@@ -67,7 +69,7 @@ class PixelAdventure extends FlameGame
     currentLevel = 1;
     levelNotifier.value = currentLevel;
 
-    player = Player(character: selectedActor);
+    player = Player(character: selectedActor, spawnPoint: TiledObject(id: 0));
 
     overlays.remove('mainMenu');
     overlays.add('levelHud');

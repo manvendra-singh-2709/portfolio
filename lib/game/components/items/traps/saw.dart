@@ -24,7 +24,14 @@ class Saw extends GameEntity<SawState> {
   final double offNeg;
   final double offPos;
 
-  Saw({super.position, super.size, required this.isVertical, required this.offNeg, required this.offPos});
+  Saw({
+    super.position,
+    super.size,
+    required this.isVertical,
+    required this.offNeg,
+    required this.offPos,
+    required super.spawnPoint,
+  });
 
   @override
   FutureOr<void> onLoad() {
@@ -34,10 +41,10 @@ class Saw extends GameEntity<SawState> {
 
     if (isVertical) {
       rangeNeg = position.y - offNeg * tileSize;
-      rangePos = position.y + offNeg * tileSize;
+      rangePos = position.y + offPos * tileSize;
     } else {
       rangeNeg = position.x - offNeg * tileSize;
-      rangePos = position.x + offNeg * tileSize;
+      rangePos = position.x + offPos * tileSize;
     }
     return super.onLoad();
   }

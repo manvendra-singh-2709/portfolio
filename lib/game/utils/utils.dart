@@ -21,5 +21,5 @@ bool checkCollisions(Player player, CollisionBlock block) {
   return (fixedY < blockY + blockHeight &&
       fixedX < blockX + blockWidth &&
       fixedX + playerWidth > blockX &&
-      playerY + playerHeight > blockY);
+      fixedY + playerHeight > blockY);
 }

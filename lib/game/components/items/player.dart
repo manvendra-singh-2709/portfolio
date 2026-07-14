@@ -34,7 +34,9 @@ class Player extends GameEntity<PlayerState> {
   bool hasJumped = false;
   bool isOnGround = false;
   bool levelFinished = false;
+  bool canDoubleJump = false;
   bool reachedCheckpoint = false;
+  bool jumpKeyPreviouslyPressed = false;
 
   Vector2 velocity = Vector2.zero();
   Vector2 initialPosition = Vector2.zero();
@@ -45,7 +47,7 @@ class Player extends GameEntity<PlayerState> {
 
   Actor character;
 
-  Player({super.position, this.character = Actor.ninjaFrog});
+  Player({this.character = Actor.ninjaFrog, required super.spawnPoint});
 
   @override
   FutureOr<void> onLoad() {
@@ -71,6 +73,7 @@ class Player extends GameEntity<PlayerState> {
       _checkHorizontalCollisions();
       _applyGravity(dt); //add after horizontal collision check
       _checkVerticalCollisions();
+      _checkLevelBounds();
     }
     super.update(dt);
   }
@@ -87,8 +90,14 @@ class Player extends GameEntity<PlayerState> {
     keyboardHorizontalMovement += isLeftKeyPressed ? -1 : 0;
     keyboardHorizontalMovement += isRightKeyPressed ? 1 : 0;
 
-    hasJumped =
+    final bool jumpPressed =
         keysPressed.contains(LogicalKeyboardKey.space) || keysPressed.contains(LogicalKeyboardKey.arrowUp);
+
+    if (jumpPressed && !jumpKeyPreviouslyPressed) {
+      hasJumped = true;
+    }
+
+    jumpKeyPreviouslyPressed = jumpPressed;
 
     return super.onKeyEvent(event, keysPressed);
   }
@@ -143,6 +152,7 @@ class Player extends GameEntity<PlayerState> {
     isOnGround = false;
     levelFinished = false;
     reachedCheckpoint = false;
+    canDoubleJump = false;
 
     velocity = Vector2.zero();
 
@@ -202,9 +212,18 @@ class Player extends GameEntity<PlayerState> {
   }
 
   void _updatePlayerMovement(double dt) {
-    if (hasJumped && isOnGround) {
+    if (hasJumped) {
       game.startLevelTimer();
-      _playerJump(dt);
+
+      if (isOnGround) {
+        _playerJump(dt);
+        canDoubleJump = true;
+      } else if (canDoubleJump) {
+        _secondJump();
+        canDoubleJump = false;
+      }
+
+      hasJumped = false;
     }
 
     // To avoid jumping while falling
@@ -219,6 +238,15 @@ class Player extends GameEntity<PlayerState> {
 
     velocity.x = horizontalMovement * moveSpeed;
     position.x += velocity.x * dt;
+  }
+
+  void _secondJump() {
+    if (Global.playSound) {
+      FlameAudio.play(Audio.jump.name, volume: Global.soundVoulme);
+    }
+
+    velocity.y = -jumpForce;
+    current = PlayerState.jump;
   }
 
   void _updatePlayerState() {
@@ -275,11 +303,14 @@ class Player extends GameEntity<PlayerState> {
             velocity.y = 0;
             position.y = block.y - hitbox.height - hitbox.offsetY;
             isOnGround = true;
+            canDoubleJump = false;
             break;
           }
           if (velocity.y < 0) {
             velocity.y = 0;
             position.y = block.y + block.height - hitbox.offsetY;
+            hasJumped = false;
+            break;
           }
         }
       } else {
@@ -288,6 +319,7 @@ class Player extends GameEntity<PlayerState> {
             velocity.y = 0;
             position.y = block.y - hitbox.height - hitbox.offsetY;
             isOnGround = true;
+            canDoubleJump = false;
             break;
           }
         }
@@ -298,12 +330,12 @@ class Player extends GameEntity<PlayerState> {
   void _playerJump(double dt) {
     if (Global.playSound) FlameAudio.play(Audio.jump.name, volume: Global.soundVoulme);
     velocity.y = -jumpForce;
-    position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
   }
 
   void _respawn() {
+    canDoubleJump = false;
     if (gotHit) return;
     gotHit = true;
     velocity = Vector2.zero();
@@ -354,5 +386,20 @@ class Player extends GameEntity<PlayerState> {
 
   void collisionWithEnemy() {
     _respawn();
+  }
+
+  void bounceFromEnemy(double enemyTopY) {
+    velocity.y = -jumpForce * 0.3;
+    position.y = enemyTopY - hitbox.height - hitbox.offsetY - 1;
+    isOnGround = false;
+    hasJumped = false;
+  }
+
+  void _checkLevelBounds() {
+    if (position.y + hitbox.offsetY < 0) {
+      position.y = -hitbox.offsetY;
+      velocity.y = 0;
+      hasJumped = false;
+    }
   }
 }

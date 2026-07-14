@@ -3,8 +3,6 @@ import 'dart:math' as math;
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/sprite.dart';
-import 'package:flame_audio/flame_audio.dart';
 
 import 'package:portfolio/game/components/collisions/blocks.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
@@ -14,27 +12,29 @@ import 'package:portfolio/globals/globals.dart';
 import 'package:portfolio/game/components/items/abstracts/game_entity.dart';
 
 abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
-  final double? offNeg;
-  final double? offPos;
-  final bool? shouldPatrol;
-  final bool? undead;
-  final bool? deadDamage;
 
   final EnemyType enemyType;
 
   Enemy({
-    super.position,
     super.size,
+    super.position,
     super.priority,
-    required this.offNeg,
-    required this.offPos,
-    required this.shouldPatrol,
-    required this.undead,
-    required this.deadDamage,
+    required super.spawnPoint,
     required this.hitbox,
     required this.enemyType,
-  });
+  }) {
+    offNeg = spawnPoint.properties.getProperty('offNeg')!.value as double;
+    offPos = spawnPoint.properties.getProperty('offPos')!.value as double;
+    shouldPatrol = spawnPoint.properties.getProperty('patrol')!.value as bool;
+    undead = spawnPoint.properties.getProperty('undead')!.value as bool;
+    deadDamage = spawnPoint.properties.getProperty('deadDamage')!.value as bool;
+    position = Vector2(spawnPoint.x, spawnPoint.y);
+    size = Vector2(spawnPoint.width, spawnPoint.height);
+  }
 
+  bool? shouldPatrol;
+  bool? undead;
+  bool? deadDamage;
   bool canDamagePlayer = true;
   bool isAlive = true;
   bool aiEnabled = true;
@@ -47,12 +47,14 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
 
   late final Player player;
 
+  double? offPos;
+  double? offNeg;
   double rangeNeg = 0;
   double rangePos = 0;
   double attackRange = 18;
   double moveDirection = 1;
   double visionRange = 160;
-  double visionHeight = 30;
+  double visionHeight = 16;
   double visionFrontRange = Global.visionFrontRange;
   double visionBackRange = Global.visionBackRange;
 
@@ -75,6 +77,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
   FutureOr<void> onLoad() {
     player = game.player;
     rangePos = position.x + offPos! * tileSize;
+    rangeNeg = position.x - offNeg! * tileSize;
 
     _loadAllAnimations();
 
@@ -98,7 +101,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
       directionLockTimer -= dt;
     }
 
-    lastCanSeePlayer = _canSeePlayer();
+    lastCanSeePlayer = canSeePlayer();
     lastWallAhead = _hasWallAhead();
     lastGroundAhead = _hasGroundAhead();
 
@@ -153,9 +156,9 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
       current = EnemyState.run;
     }
 
-    if (moveDirection < 0 && scale.x < 0) {
+    if ((moveDirection < 0 && scale.x < 0) || (position.x <= rangeNeg || position.x >= rangePos)) {
       flipHorizontallyAroundCenter();
-    } else if (moveDirection > 0 && scale.x > 0) {
+    } else if ((moveDirection > 0 && scale.x > 0) || (position.x <= rangeNeg || position.x >= rangePos)) {
       flipHorizontallyAroundCenter();
     }
   }
@@ -176,36 +179,6 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     return false;
   }
 
-  bool _canSeePlayer() {
-    final double enemyCenterX = x + width / 2;
-    final double enemyCenterY = y + height / 2;
-    final double playerCenterX = player.x + player.width / 2;
-    final double playerCenterY = player.y + player.height / 2;
-
-    final double dx = playerCenterX - enemyCenterX;
-    final double dy = (playerCenterY - enemyCenterY).abs();
-
-    if (dy > visionHeight) return false;
-
-    final bool playerOnRight = dx > 0;
-    final bool lookingRight = moveDirection > 0;
-
-    final bool playerVeryClose = dx.abs() <= attackRange;
-
-    final bool playerInFront = playerOnRight == lookingRight && dx.abs() <= visionFrontRange;
-
-    final bool playerBehind = playerOnRight != lookingRight && dx.abs() <= visionBackRange;
-
-    if (!playerVeryClose && !playerInFront && !playerBehind) return false;
-
-    if (!playerInFront && !playerBehind) return false;
-
-    if (_hasWallBetween(enemyCenterX, playerCenterX, enemyCenterY)) return false;
-    if (_hasDropBetween(enemyCenterX, playerCenterX)) return false;
-
-    return true;
-  }
-
   bool _hasWallAhead() {
     final double probeX = moveDirection > 0 ? x + hitbox.offsetX : x + hitbox.offsetX;
     final double probeY = y + hitbox.offsetY + 6;
@@ -220,7 +193,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     return _pointInsideSolidBlock(probeX, probeY);
   }
 
-  bool _hasWallBetween(double startX, double endX, double yPosition) {
+  bool hasWallBetween(double startX, double endX, double yPosition) {
     final double minX = math.min(startX, endX);
     final double maxX = math.max(startX, endX);
 
@@ -239,7 +212,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     return false;
   }
 
-  bool _hasDropBetween(double startX, double endX) {
+  bool hasDropBetween(double startX, double endX) {
     final double minX = math.min(startX, endX);
     final double maxX = math.max(startX, endX);
     final double step = 8;
@@ -300,33 +273,6 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     current = loadedAnimations.keys.first;
   }
 
-  void collisionWithPlayer() {
-    if (!canDamagePlayer || !isAlive) return;
-
-    if (player.velocity.y > 0 && player.y + player.height > y) {
-      player.hasJumped = true;
-      if (Global.playSound) FlameAudio.play(Audio.jumpOnEnemy.name, volume: Global.soundVoulme);
-      isAlive = false;
-      canDamagePlayer = false;
-      aiEnabled = false;
-
-      EnemyState hitState = animationMap.keys.elementAt(1);
-
-      current = hitState;
-
-      final SpriteAnimationTicker hitTicker = animationTickers![hitState]!;
-
-      hitTicker.reset();
-
-      hitTicker.completed.whenComplete(() {
-        hitTicker.reset();
-        removeFromParent();
-      });
-
-      return;
-    }
-
-    disableDamageTemporarily();
-    player.collisionWithEnemy();
-  }
+  bool canSeePlayer();
+  void collisionWithPlayer();
 }

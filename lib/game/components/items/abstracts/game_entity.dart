@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/collisions.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:portfolio/game/pixel_adventure.dart';
 
 abstract class GameEntity<T extends Enum> extends SpriteAnimationGroupComponent<T>
@@ -19,5 +20,11 @@ abstract class GameEntity<T extends Enum> extends SpriteAnimationGroupComponent<
   double keyboardHorizontalMovement = 0;
   double joystickHorizontalMovement = 0;
 
-  GameEntity({super.position, super.size, super.priority});
+  late TiledObject spawnPoint;
+
+  GameEntity({super.position, super.size, super.priority, required this.spawnPoint});
+
+  void setSpawnPoint(TiledObject tiledObject) {
+    spawnPoint = tiledObject;
+  }
 }

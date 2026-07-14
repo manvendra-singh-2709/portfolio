@@ -75,6 +75,9 @@ enum Layers {
 enum SpawnPoints {
   player('Player'),
   chicken('Chicken'),
+  angryPig('AngryPig'),
+  mushroom('Mushroom'),
+  slime('Slime'),
   saw('Saw'),
   fruit('Fruit'),
   fan('Fan'),

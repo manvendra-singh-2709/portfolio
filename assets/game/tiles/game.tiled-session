@@ -1,15 +1,15 @@
 {
-    "activeFile": "Level-01.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "Level-01.tmx": {
-            "scale": 1.4027343749999999,
+            "scale": 1.4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 319.7326649958229,
-                "y": 183.92648287385134
+                "x": 322.5,
+                "y": 192.14285714285714
             }
         },
         "Level-02.tmx": {
@@ -24,14 +24,16 @@
             "scaleInDock": 1
         }
     },
+    "map.height": 50,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 50,
     "openFiles": [
-        "Level-01.tmx",
-        "Level-02.tmx"
     ],
     "project": "game.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "Level-02.tmx",
-        "Level-01.tmx"
+        "Level-01.tmx",
+        "Level-02.tmx"
     ]
 }

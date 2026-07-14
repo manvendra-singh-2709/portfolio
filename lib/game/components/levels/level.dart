@@ -2,7 +2,10 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 import 'package:portfolio/game/components/items/checkpoint.dart';
+import 'package:portfolio/game/components/items/enemy/angry_pig.dart';
 import 'package:portfolio/game/components/items/enemy/chicken.dart';
+import 'package:portfolio/game/components/items/enemy/mushroom.dart';
+import 'package:portfolio/game/components/items/enemy/slime.dart';
 import 'package:portfolio/game/components/items/traps/fan.dart';
 import 'package:portfolio/game/components/items/fruit.dart';
 import 'package:portfolio/game/components/items/player.dart';
@@ -80,13 +83,16 @@ class Level extends World with HasGameReference<PixelAdventure> {
     if (spawnPointsLayer == null) return;
 
     for (final TiledObject spawnPoint in spawnPointsLayer.objects) {
-      final SpawnPoints? type = SpawnPoints.values.where((e) => e.name == spawnPoint.class_).firstOrNull;
+      final SpawnPoints? type = SpawnPoints.values
+          .where((SpawnPoints sp) => sp.name == spawnPoint.class_)
+          .firstOrNull;
 
       switch (type) {
         case SpawnPoints.player:
           player.position = Vector2(spawnPoint.x, spawnPoint.y);
           player.initialPosition = player.position.clone();
           player.checkpointPosition = player.position.clone();
+          player.setSpawnPoint(spawnPoint);
           add(player);
           break;
 
@@ -109,6 +115,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
               offPos: spawnPoint.properties.getProperty('offPos')!.value as double,
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
+              spawnPoint: spawnPoint,
             ),
           );
           break;
@@ -119,6 +126,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
               on: spawnPoint.properties.getProperty('on')!.value as bool,
+              spawnPoint: spawnPoint,
             ),
           );
           break;
@@ -137,6 +145,7 @@ class Level extends World with HasGameReference<PixelAdventure> {
             Checkpoint(
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
+              spawnPoint: spawnPoint,
             ),
           );
           break;
@@ -144,11 +153,37 @@ class Level extends World with HasGameReference<PixelAdventure> {
         case SpawnPoints.chicken:
           add(
             Chicken(
-              offNeg: spawnPoint.properties.getProperty('offNeg')!.value as double,
-              offPos: spawnPoint.properties.getProperty('offPos')!.value as double,
-              shouldPatrol: spawnPoint.properties.getProperty('patrol')!.value as bool,
-              undead: spawnPoint.properties.getProperty('undead')!.value as bool,
-              deadDamage: spawnPoint.properties.getProperty('deadDamage')!.value as bool,
+              spawnPoint: spawnPoint,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            ),
+          );
+          break;
+
+        case SpawnPoints.angryPig:
+          add(
+            AngryPig(
+              spawnPoint: spawnPoint,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            ),
+          );
+          break;
+
+        case SpawnPoints.mushroom:
+          add(
+            Mushroom(
+              spawnPoint: spawnPoint,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            ),
+          );
+          break;
+
+        case SpawnPoints.slime:
+          add(
+            Slime(
+              spawnPoint: spawnPoint,
               position: Vector2(spawnPoint.x, spawnPoint.y),
               size: Vector2(spawnPoint.width, spawnPoint.height),
             ),

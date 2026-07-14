@@ -38,6 +38,17 @@ class _GameMainMenuState extends State<GameMainMenu> {
     return RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email);
   }
 
+  @override
+  void initState() {
+    super.initState();
+
+    Global.init().then((_) {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
   Future<void> submitEmail() async {
     final String email = emailController.text.trim();
 
@@ -49,6 +60,7 @@ class _GameMainMenuState extends State<GameMainMenu> {
     }
 
     setState(() {
+      Global.saveEmail(email);
       loadingEmail = true;
       emailError = null;
     });
@@ -287,6 +299,7 @@ class _GameMainMenuState extends State<GameMainMenu> {
               onTap: () {
                 setState(() {
                   Global.email = null;
+                  Global.removeEmail();
                   Global.levelData.clear();
                 });
               },
