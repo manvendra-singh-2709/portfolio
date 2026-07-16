@@ -29,13 +29,21 @@ class _CurrentWorkSimulationState extends State<CurrentWorkSimulation> with Sing
     _setupController();
   }
 
+  @override
+  void dispose() {
+    _controller.removeListener(_updateFrame);
+    _controller.dispose();
+    _frameController.dispose();
+    super.dispose();
+  }
+
   void _setupController() {
     int frameCount = _currentMovieFrames.length;
 
     int totalDurationMs;
 
     if (frameCount < 200) {
-      totalDurationMs = 5000; // 10 seconds
+      totalDurationMs = 5000; // 5 seconds
     } else if (frameCount <= 1000) {
       totalDurationMs = 20000; // 20 seconds
     } else {

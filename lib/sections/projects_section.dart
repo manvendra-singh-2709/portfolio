@@ -25,9 +25,24 @@ class _ProjectsSectionState extends State<ProjectsSection>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
-    _tabController.addListener(() => setState(() {}));
+
+    _tabController = TabController(length: 2, vsync: this);
+
+    _tabController.addListener(_handleTabChange);
     _projectsStream = ApiCaller.getProjects();
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(_handleTabChange);
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  void _handleTabChange() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -113,7 +128,7 @@ class _PersistentProjectsListState extends State<PersistentProjectsList> with Au
     super.build(context);
 
     return StreamBuilder<List<Project>>(
-      stream: Global.projectsStream,
+      stream: widget.stream,
       initialData: Global.projectsList.isNotEmpty ? Global.projectsList : null,
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {

@@ -13,6 +13,13 @@ class _BlogAddScreenState extends State<BlogAddScreen> {
   final TextEditingController _contentController = TextEditingController();
   bool _isUploading = false;
 
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
+
   Future<void> _handlePost() async {
     String title = _titleController.text.trim();
     String content = _contentController.text.trim();

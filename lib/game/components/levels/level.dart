@@ -109,22 +109,13 @@ class Level extends World with HasGameReference<PixelAdventure> {
               isVertical: spawnPoint.properties.getProperty('isVertical')!.value as bool,
               offNeg: spawnPoint.properties.getProperty('offNeg')!.value as double,
               offPos: spawnPoint.properties.getProperty('offPos')!.value as double,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
               spawnPoint: spawnPoint,
             ),
           );
           break;
 
         case SpawnPoints.fan:
-          add(
-            Fan(
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-              on: spawnPoint.properties.getProperty('on')!.value as bool,
-              spawnPoint: spawnPoint,
-            ),
-          );
+          add(Fan(on: spawnPoint.properties.getProperty('on')!.value as bool, spawnPoint: spawnPoint));
           break;
 
         case SpawnPoints.spike:

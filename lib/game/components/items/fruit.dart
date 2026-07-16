@@ -38,20 +38,23 @@ class Fruit extends SpriteEntity {
   }
 
   void collisionWithPlayer() {
-    if (!_collected) {
-      _collected = true;
-      if (Global.playSound) FlameAudio.play(Audio.collect.name, volume: Global.soundVoulme);
-      animation = SpriteAnimation.fromFrameData(
-        game.images.fromCache('Items/Fruits/Collected.png'),
-        SpriteAnimationData.sequenced(
-          amount: 6,
-          stepTime: stepTime,
-          textureSize: Vector2.all(32),
-          loop: false,
-        ),
-      );
-      level.fruitCollected();
+    if (_collected) {
+      return;
     }
-    Future.delayed(const Duration(microseconds: 400), () => removeFromParent());
+
+    _collected = true;
+
+    if (Global.playSound) {
+      FlameAudio.play(Audio.collect.name, volume: Global.soundVoulme);
+    }
+
+    animation = SpriteAnimation.fromFrameData(
+      game.images.fromCache('Items/Fruits/Collected.png'),
+      SpriteAnimationData.sequenced(amount: 6, stepTime: stepTime, textureSize: Vector2.all(32), loop: false),
+    );
+
+    level.fruitCollected();
+
+    Future.delayed(const Duration(milliseconds: 300), removeFromParent);
   }
 }

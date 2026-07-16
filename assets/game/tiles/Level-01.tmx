@@ -49,7 +49,7 @@
   <object id="44" name="Cherries" type="Fruit" x="80" y="176" width="32" height="32"/>
   <object id="54" name="Pineapple" type="Fruit" x="480" y="128" width="32" height="32"/>
   <object id="55" name="Strawberry" type="Fruit" x="480" y="176" width="32" height="32"/>
-  <object id="61" name="Chicken" type="Chicken" x="336" y="272" width="32" height="32">
+  <object id="61" name="Slime" type="Slime" x="336" y="272" width="32" height="32">
    <properties>
     <property name="deadDamage" type="bool" value="false"/>
     <property name="offNeg" type="float" value="11"/>

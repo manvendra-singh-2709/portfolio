@@ -3,6 +3,8 @@ import 'dart:math' as math;
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 import 'package:portfolio/game/components/collisions/blocks.dart';
 import 'package:portfolio/game/components/items/hitbox.dart';
@@ -49,6 +51,8 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
   double visionHeight = 16;
   double visionFrontRange = Global.visionFrontRange;
   double visionBackRange = Global.visionBackRange;
+
+  int runIndex = 2;
 
   Map<EnemyState, SpriteAnimation?> animationMap = {};
 
@@ -120,7 +124,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
         moveDirection = dx < 0 ? -1 : 1;
       }
     } else if (!shouldPatrol!) {
-      current = EnemyState.idle;
+      current = animationMap.keys.first;
       return;
     }
 
@@ -132,7 +136,7 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
       isChasing = false;
 
       if (!shouldPatrol!) {
-        current = EnemyState.idle;
+        current = animationMap.keys.first;
         return;
       }
     }
@@ -143,9 +147,9 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
 
   void _updateEnemyState() {
     if (!isChasing && !shouldPatrol!) {
-      current = EnemyState.idle;
+      current = animationMap.keys.first;
     } else {
-      current = EnemyState.run;
+      current = animationMap.keys.elementAt(runIndex);
     }
 
     if ((moveDirection < 0 && scale.x < 0) || (position.x <= rangeNeg || position.x >= rangePos)) {
@@ -265,6 +269,63 @@ abstract class Enemy<T extends Enum> extends GameEntity<EnemyState> {
     current = loadedAnimations.keys.first;
   }
 
+  void collisionWithPlayer() {
+    if (!canDamagePlayer || !isAlive) return;
+
+    final double playerLeft = player.x + player.hitbox.offsetX;
+
+    final double playerRight = playerLeft + player.hitbox.width;
+
+    final double playerTop = player.y + player.hitbox.offsetY;
+
+    final double playerBottom = playerTop + player.hitbox.height;
+
+    final double enemyLeft = x + hitbox.offsetX;
+
+    final double enemyRight = enemyLeft + hitbox.width;
+
+    final double enemyTop = y + hitbox.offsetY;
+
+    final bool horizontallyOverlapping = playerRight > enemyLeft && playerLeft < enemyRight;
+
+    final double stompTolerance = 6;
+
+    final bool playerFeetNearEnemyTop =
+        playerBottom >= enemyTop - stompTolerance && playerBottom <= enemyTop + stompTolerance;
+
+    final bool isFallingOntoEnemy =
+        player.velocity.y > 0 && horizontallyOverlapping && playerFeetNearEnemyTop;
+
+    if (isFallingOntoEnemy) {
+      player.bounceFromEnemy(enemyTop);
+
+      if (Global.playSound) {
+        FlameAudio.play(Audio.jumpOnEnemy.name, volume: Global.soundVoulme);
+      }
+
+      isAlive = false;
+      canDamagePlayer = false;
+      aiEnabled = false;
+
+      final EnemyState hitState = animationMap.keys.elementAt(1);
+
+      current = hitState;
+
+      final SpriteAnimationTicker hitTicker = animationTickers![hitState]!;
+
+      hitTicker.reset();
+
+      hitTicker.completed.whenComplete(() {
+        hitTicker.reset();
+        removeFromParent();
+      });
+
+      return;
+    }
+
+    disableDamageTemporarily();
+    player.collisionWithEnemy();
+  }
+
   bool canSeePlayer();
-  void collisionWithPlayer();
 }

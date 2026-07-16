@@ -28,14 +28,22 @@ class _GameMainMenuState extends State<GameMainMenu> {
   int swipeDirection = 1;
   bool _hovered = false;
 
+  final RegExp emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+
   final TextEditingController emailController = TextEditingController();
   String? emailError;
   bool loadingEmail = false;
 
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   Actor get actor => Actor.values[actorIndex];
 
   bool isValidEmail(String email) {
-    return RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email);
+    return emailRegex.hasMatch(email);
   }
 
   @override
@@ -60,16 +68,28 @@ class _GameMainMenuState extends State<GameMainMenu> {
     }
 
     setState(() {
-      Global.saveEmail(email);
       loadingEmail = true;
       emailError = null;
     });
 
-    await GameApiCaller.loadOrCreateUser(email);
+    try {
+      await Global.saveEmail(email);
+      await GameApiCaller.loadOrCreateUser(email);
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
 
-    setState(() {
-      loadingEmail = false;
-    });
+      setState(() {
+        emailError = 'Unable to load user data';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          loadingEmail = false;
+        });
+      }
+    }
   }
 
   void changeActor(int delta) {

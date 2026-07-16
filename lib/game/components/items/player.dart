@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame_audio/flame_audio.dart' hide PlayerState;
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/services.dart';
 import 'package:portfolio/game/components/items/abstracts/enemy.dart';
 import 'package:portfolio/game/components/items/checkpoint.dart';
@@ -52,15 +53,26 @@ class Player extends GameEntity<PlayerState> {
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimations();
-    initialPosition = Vector2(position.x, position.y);
-    checkpointPosition = Vector2(position.x, position.y);
+
+    initialPosition = position.clone();
+    checkpointPosition = position.clone();
+
     add(
       RectangleHitbox(
         position: Vector2(hitbox.offsetX, hitbox.offsetY),
         size: Vector2(hitbox.width, hitbox.height),
       ),
     );
+
     return super.onLoad();
+  }
+
+  @override
+  void setSpawnPoint(TiledObject tiledObject) {
+    super.setSpawnPoint(tiledObject);
+
+    initialPosition = position.clone();
+    checkpointPosition = position.clone();
   }
 
   @override
@@ -389,17 +401,34 @@ class Player extends GameEntity<PlayerState> {
   }
 
   void bounceFromEnemy(double enemyTopY) {
-    velocity.y = -jumpForce * 0.3;
-    position.y = enemyTopY - hitbox.height - hitbox.offsetY - 1;
+    final double desiredY = enemyTopY - hitbox.height - hitbox.offsetY - 1;
+
+    final double minimumPlayerY = -hitbox.offsetY;
+
+    position.y = desiredY.clamp(minimumPlayerY, double.infinity);
+
+    // Do not bounce upward when the player is already touching the ceiling.
+    final bool touchingTopBoundary = position.y <= minimumPlayerY + 0.01;
+
+    velocity.y = touchingTopBoundary ? 0 : -jumpForce * 0.3;
+
     isOnGround = false;
     hasJumped = false;
+    canDoubleJump = false;
   }
 
   void _checkLevelBounds() {
-    if (position.y + hitbox.offsetY < 0) {
+    final double playerHitboxTop = position.y + hitbox.offsetY;
+
+    if (playerHitboxTop < 0) {
       position.y = -hitbox.offsetY;
-      velocity.y = 0;
+
+      if (velocity.y < 0) {
+        velocity.y = 0;
+      }
+
       hasJumped = false;
+      canDoubleJump = false;
     }
   }
 }

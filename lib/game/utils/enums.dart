@@ -149,6 +149,7 @@ enum EnemyState {
   idleRun(name: 'Idle-Run'),
   jump(name: 'Jump'),
   jumpAnticipation(name: 'Jump Anticipation'),
+  particles(name: 'Particles'),
   rock1Hit(name: 'Rock1_Hit'),
   rock1Idle(name: 'Rock1_Idle'),
   rock1Run(name: 'Rock1_Run'),
@@ -406,6 +407,26 @@ enemyAssets = <EnemyType, Map<EnemyState, EnemyAnimationData>>{
       fileName: 'Idle (44x30).png',
       frames: 10,
       textureSize: Vector2(44, 30),
+    ),
+  },
+
+  EnemyType.slime: <EnemyState, EnemyAnimationData>{
+    EnemyState.hit: EnemyAnimationData(
+      fileName: 'Hit (44x30).png',
+      frames: 5,
+      textureSize: Vector2(44, 30),
+      loop: false,
+    ),
+    EnemyState.idleRun: EnemyAnimationData(
+      fileName: 'Idle-Run (44x30).png',
+      frames: 4,
+      textureSize: Vector2(44, 30),
+    ),
+    EnemyState.particles: EnemyAnimationData(
+      fileName: 'Particles (64x16).png',
+      frames: 4,
+      textureSize: Vector2(64, 16),
+      loop: false
     ),
   },
 };

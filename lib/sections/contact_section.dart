@@ -13,6 +13,9 @@ class ContactSection extends StatefulWidget {
 class _ContactSectionState extends State<ContactSection> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
+
+  bool _isSending = false;
+
   late TextEditingController _messageController;
 
   @override
@@ -22,6 +25,14 @@ class _ContactSectionState extends State<ContactSection> {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _messageController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _messageController.dispose();
+    super.dispose();
   }
 
   void _showGlassToast(String text, {required bool isError}) {
@@ -87,6 +98,14 @@ class _ContactSectionState extends State<ContactSection> {
   }
 
   void sendMessage() async {
+    if (_isSending) {
+      return;
+    }
+
+    setState(() {
+      _isSending = true;
+    });
+
     final name = _nameController.text.trim();
     final email = _emailController.text.trim();
     final content = _messageController.text.trim();
@@ -103,6 +122,14 @@ class _ContactSectionState extends State<ContactSection> {
     }
 
     bool success = await ApiCaller.sendMessage(Message(name: name, email: email, message: content, id: 0));
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _isSending = false;
+    });
 
     if (success) {
       _nameController.clear();
@@ -139,9 +166,7 @@ class _ContactSectionState extends State<ContactSection> {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {
-                          sendMessage();
-                        },
+                        onPressed: _isSending ? null : sendMessage,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blueAccent,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
