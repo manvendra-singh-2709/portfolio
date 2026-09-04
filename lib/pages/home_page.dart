@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/globals/globals.dart';
 import 'package:portfolio/sections/about_section.dart';
 import 'package:portfolio/sections/contact_section.dart';
 import 'package:portfolio/sections/footer.dart';
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
     return GlassContainer(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: ['Home', 'Projects', 'Resume', 'Blogs', 'Contact']
+        children: Global.navBarList
             .map(
               (item) => ListTile(
                 title: Center(

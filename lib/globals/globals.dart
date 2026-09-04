@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math' hide log;
 
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:portfolio/game/pixel_adventure.dart';
@@ -29,6 +30,21 @@ class Global {
   static bool showJoystick = false;
   static bool playSound = true;
   static TiledObject? playerSpawnpoint;
+  static final Random random = Random();
+  static final List<String> navBarList = ['Home', 'Projects', 'Simulation', 'Resume', 'Blogs', 'Contact'];
+
+  //evolution-simulation
+  static double worldX = 8000;
+  static double worldY = 8000;
+  static double outerGrassChance = 0.35;
+  static double hexRadius = 120;
+  static int minWaterBodies = 12;
+  static int maxWaterBodies = 20;
+  static int minBiomeRings = 3;
+  static int maxBiomeRings = 6;
+  static String evolutionImagesPrefix = 'assets/evolution/';
+
+  static double desertProbability = 0.5;
 
   Global() {
     log("Global Invoked");

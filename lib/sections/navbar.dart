@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pixel_ui/pixel_ui.dart';
+import 'package:portfolio/globals/globals.dart';
 import 'package:portfolio/utils/extensions.dart';
 import 'package:portfolio/utils/nav_bar_item.dart';
 import 'package:portfolio/widgets/glass_container.dart';
@@ -13,7 +14,7 @@ class Navbar extends StatefulWidget {
 
   @override
   State<Navbar> createState() => _NavbarState();
-  static const _navItems = ['Home', 'Projects', 'Resume', 'Blogs', 'Contact'];
+  static final List<String> _navItems = Global.navBarList;
 }
 
 class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
@@ -176,6 +177,8 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
       Navigator.pushNamed(context, '/blogs');
     } else if (item == 'Resume') {
       Navigator.pushNamed(context, '/resume');
+    } else if (item == 'Simulation') {
+      Navigator.pushNamed(context, '/evolution');
     } else {
       widget.onNavItemTap(item);
     }

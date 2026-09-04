@@ -426,7 +426,7 @@ enemyAssets = <EnemyType, Map<EnemyState, EnemyAnimationData>>{
       fileName: 'Particles (64x16).png',
       frames: 4,
       textureSize: Vector2(64, 16),
-      loop: false
+      loop: false,
     ),
   },
 };

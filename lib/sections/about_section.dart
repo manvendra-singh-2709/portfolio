@@ -13,7 +13,7 @@ class AboutSection extends StatelessWidget {
           padding: const EdgeInsets.all(40.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text('About Me', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),
               Text(
